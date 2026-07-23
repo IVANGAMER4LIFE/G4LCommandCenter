@@ -1,0 +1,41 @@
+/* PHASE 5.1 — Premium Interface Refinement
+   RULE: refine existing calibrated panels only. No replacement panels, no blur, no layout changes. */
+.command-center{--p51-green:#a8ff28;--p51-cyan:#72efff}
+
+/* Existing calibrated interaction surfaces remain transparent. */
+.hotspot{isolation:isolate;overflow:hidden;transition:transform .26s cubic-bezier(.2,.75,.25,1),filter .26s ease}
+.hotspot .p51-edge,
+.hotspot .p51-scan,
+.hotspot .p51-led{position:absolute;pointer-events:none;z-index:5}
+
+/* Fine edge reinforcement follows the exact existing panel footprint. */
+.hotspot .p51-edge{inset:1px;border:1px solid color-mix(in srgb,currentColor 24%,transparent);box-shadow:inset 0 0 0 1px rgba(255,255,255,.018);opacity:.35;transition:opacity .25s ease,box-shadow .25s ease}
+.hotspot .p51-edge::before,.hotspot .p51-edge::after{content:"";position:absolute;width:13%;height:18%;opacity:.72}
+.hotspot .p51-edge::before{left:-1px;top:-1px;border-left:1px solid currentColor;border-top:1px solid currentColor}
+.hotspot .p51-edge::after{right:-1px;bottom:-1px;border-right:1px solid currentColor;border-bottom:1px solid currentColor}
+
+/* A narrow scan travels inside the existing panel only; no blur. */
+.hotspot .p51-scan{left:-35%;top:0;width:24%;height:100%;opacity:0;background:linear-gradient(100deg,transparent,rgba(255,255,255,.15),transparent);transform:skewX(-15deg)}
+
+/* Small operational indicator, placed within the existing panel footprint. */
+.hotspot .p51-led{right:5%;top:7%;width:3px;height:3px;border-radius:50%;background:currentColor;box-shadow:0 0 5px currentColor;opacity:.38;animation:p51Led 3.8s steps(1,end) infinite}
+
+.hotspot:hover,.hotspot:focus-visible{transform:translateY(-1px) scale(1.006);filter:brightness(1.09) saturate(1.05)}
+.hotspot:hover .p51-edge,.hotspot:focus-visible .p51-edge{opacity:.9;box-shadow:0 0 8px color-mix(in srgb,currentColor 32%,transparent),inset 0 0 8px color-mix(in srgb,currentColor 10%,transparent)}
+.hotspot:hover .p51-scan,.hotspot:focus-visible .p51-scan{animation:p51Scan .78s ease-out both}
+.hotspot:active{transform:translateY(1px) scale(.988);filter:brightness(.94)}
+
+/* Social cards keep their original colour identity; effect is restrained. */
+[class*="social-"] .p51-led{right:8%;top:6%;opacity:.46}
+[class*="card-"] .p51-edge,.commander-card .p51-edge{border-color:color-mix(in srgb,currentColor 19%,transparent)}
+[class*="nav-"] .p51-led{right:6%;top:50%;transform:translateY(-50%);width:2px;height:2px}
+
+/* Existing lower feature panels receive a very slow, nearly invisible status sweep. */
+.card-latest .p51-scan,.card-live .p51-scan,.card-upcoming .p51-scan,.card-merch .p51-scan,.commander-card .p51-scan{animation:p51AmbientScan 16s ease-in-out infinite;opacity:.18}
+.card-live .p51-led{animation-duration:2.4s}
+
+@keyframes p51Scan{0%{left:-35%;opacity:0}20%{opacity:.5}100%{left:120%;opacity:0}}
+@keyframes p51AmbientScan{0%,72%{left:-35%;opacity:0}78%{opacity:.16}88%,100%{left:120%;opacity:0}}
+@keyframes p51Led{0%,76%,100%{opacity:.24}78%,84%{opacity:.82}}
+
+@media(prefers-reduced-motion:reduce){.hotspot .p51-led,.hotspot .p51-scan{animation:none!important}.hotspot{transition:none}}

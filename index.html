@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#020402">
+  <title>G4L Command Center</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/lightning-v1.css">
+  <link rel="stylesheet" href="css/polish-v1.css">
+  <link rel="stylesheet" href="css/environment-polish-v1.css">
+  <link rel="stylesheet" href="css/phase5-1-refinement.css">
+  <link rel="stylesheet" href="css/step2-2c-integrated-home.css">
+</head>
+<body>
+
+
+<div class="g4l-boot" id="g4lBoot">
+  <div class="g4l-boot-grid"></div>
+  <section class="g4l-boot-panel">
+    <div class="g4l-boot-logo">G<span>4</span>L</div>
+    <p id="bootMessage">INITIALIZING COMMAND CENTER</p>
+    <div class="g4l-boot-progress"><i id="bootBar"></i></div>
+    <small id="bootDetail">SYSTEMS STANDBY</small>
+    <button type="button" id="skipBoot">SKIP INTRO</button>
+  </section>
+</div>
+  <main class="page-shell">
+    <section class="command-center" id="commandCenter">
+      <img class="master-art" src="assets/g4l-approved-master.png" alt="Approved G4L Command Center">
+      <div class="phase2-layer" id="phase2Layer" aria-hidden="true">
+        <div class="live-system-layer" id="liveSystemLayer">
+          <div class="recording-indicator" id="recordingIndicator"></div>
+          <div class="status-wave" id="statusWave"><i></i></div>
+          <div class="live-card-energy" id="liveCardEnergy"></div>
+          <div class="offline-veil" id="offlineVeil"></div>
+        </div>
+        <div class="frame-breathe"></div>
+        <div class="commander-panel-glow"></div>
+        <div class="live-panel-glow"></div>
+        <div class="heartbeat-overlay"><i></i></div>
+      </div>
+
+      <!-- Independent WOW overlay layers; artwork remains untouched -->
+      <div class="fx-layer sparks-layer" id="sparksLayer" aria-hidden="true"></div>
+      <div class="fx-layer dust-layer" id="dustLayer" aria-hidden="true"></div>
+      <div class="living-atmosphere" id="atmosphereLayer" aria-hidden="true">
+        <div class="atmo atmo-back" id="atmoBack"></div>
+        <div class="atmo atmo-mid" id="atmoMid"></div>
+        <div class="atmo atmo-front" id="atmoFront"></div>
+        <div class="ambient-frame-flow"></div>
+        <div class="local-response nav-response"></div>
+        <div class="local-response live-response"></div>
+        <div class="local-response countdown-response"></div>
+        <div class="local-response commander-response"></div>
+      </div>
+      <div class="fx-layer lightning-layer" id="lightningLayer" aria-hidden="true">
+        <svg viewBox="0 0 1536 1024" preserveAspectRatio="none">
+          <path class="real-bolt rb-1" d="M610 95 L590 126 L603 135 L580 162 L593 173 L570 205"/>
+          <path class="real-bolt rb-2" d="M926 98 L946 128 L934 139 L958 164 L946 177 L971 208"/>
+          <path class="real-bolt rb-3" d="M520 178 L496 206 L508 220 L483 248 L497 263 L474 294"/>
+          <path class="real-bolt rb-4" d="M1015 180 L1039 207 L1027 222 L1052 249 L1038 265 L1062 296"/>
+        </svg>
+      </div>
+      <div class="fx-layer power-flash" id="powerFlash" aria-hidden="true"></div>
+
+      <!-- Lightning v1.0: isolated energy leaking from neck, chest and shoulder seams -->
+      <div class="body-lightning-v1" id="bodyLightningV1" aria-hidden="true">
+        <span class="seam-bloom bloom-neck"></span>
+        <span class="seam-bloom bloom-chest"></span>
+        <span class="seam-bloom bloom-left"></span>
+        <span class="seam-bloom bloom-right"></span>
+        <svg viewBox="0 0 1536 1024" preserveAspectRatio="none">
+          <path class="bolt-glow" id="bodyBoltGlow" d=""></path>
+          <path class="bolt-core" id="bodyBoltCore" d=""></path>
+          <path class="bolt-branch" id="bodyBoltBranchA" d=""></path>
+          <path class="bolt-branch" id="bodyBoltBranchB" d=""></path>
+        </svg>
+      </div>
+
+
+      <!-- Approved polish: helicopter navigation lights and jet effects only -->
+      <div class="polish-v1" id="polishV1" aria-hidden="true">
+        <div class="helicopter-polish">
+          <span class="heli-nav-light heli-nav-green"></span>
+          <span class="heli-nav-light heli-nav-red"></span>
+        </div>
+        <div class="jet-polish">
+          <span class="jet-engine jet-engine-a"></span>
+          <span class="jet-engine jet-engine-b"></span>
+          <span class="jet-heat"></span>
+          <span class="jet-glint"></span>
+        </div>
+      </div>
+
+      <!-- Phase 4.1 approval preview: isolated tactical vehicle + guard soldier effects -->
+      <div class="environment-polish-v1" id="environmentPolishV1" aria-hidden="true">
+        <div class="vehicle-effects">
+          <span class="vehicle-underbody-glow"></span>
+          <span class="vehicle-headlight vehicle-headlight-left"></span>
+          <span class="vehicle-headlight vehicle-headlight-right"></span>
+          <span class="vehicle-reflection"></span>
+          <span class="vehicle-heat-shimmer"></span>
+        </div>
+        <div class="soldier-effects">
+          <span class="soldier-idle-copy"></span>
+          <span class="soldier-led soldier-led-shoulder"></span>
+          <span class="soldier-led soldier-led-arm"></span>
+          <span class="soldier-weapon-pulse"></span>
+        </div>
+      </div>
+
+      <!-- Locked artwork overlay layers only -->
+      <div class="countdown-cover" aria-hidden="true"></div>
+      <div class="countdown" id="countdown" aria-label="Time until next stream">
+        <span id="days">01</span><b>:</b><span id="hours">15</span><b>:</b><span id="minutes">45</span><b>:</b><span id="seconds">30</span>
+      </div>
+
+      <div class="status-cover" id="statusCover" hidden></div>
+      <div class="live-status-text" id="liveStatusText" hidden></div>
+
+      <!-- Navigation -->
+      <button class="hotspot nav-home" data-panel="home" aria-label="Home"></button>
+      <button class="hotspot nav-about" data-panel="about" aria-label="About G4L"></button>
+      <a class="hotspot nav-live" href="https://www.twitch.tv/ivangamer4life" target="_blank" rel="noopener" aria-label="Live status"></a>
+      <button class="hotspot nav-schedule" data-panel="schedule" aria-label="Schedule"></button>
+      <button class="hotspot nav-streams" data-panel="streams" aria-label="Streams"></button>
+      <button class="hotspot nav-community" data-panel="community" aria-label="Community"></button>
+      <button class="hotspot nav-merch" data-panel="merch" aria-label="Merch store"></button>
+      <button class="hotspot nav-gallery" data-panel="gallery" aria-label="Gallery"></button>
+      <button class="hotspot nav-discord" data-panel="discord" aria-label="Discord"></button>
+      <button class="hotspot nav-contact" data-panel="contact" aria-label="Contact"></button>
+
+      <!-- Social cards -->
+      <a class="hotspot social-youtube" href="https://www.youtube.com/@ivangamer4life" target="_blank" rel="noopener" aria-label="YouTube"></a>
+      <a class="hotspot social-twitch" href="https://www.twitch.tv/ivangamer4life" target="_blank" rel="noopener" aria-label="Twitch"></a>
+      <a class="hotspot social-facebook" href="https://www.facebook.com/ivangamer4life" target="_blank" rel="noopener" aria-label="Facebook"></a>
+      <a class="hotspot social-tiktok" href="https://www.tiktok.com/@ivangamer4lifeg4l" target="_blank" rel="noopener" aria-label="TikTok"></a>
+      <a class="hotspot social-instagram" href="https://www.instagram.com/ivangamer4lifeg4l" target="_blank" rel="noopener" aria-label="Instagram"></a>
+      <button class="hotspot social-discord" data-panel="discord" aria-label="Discord"></button>
+
+      <!-- Feature cards and buttons -->
+      <a class="hotspot card-latest" href="https://www.youtube.com/@ivangamer4life/videos" target="_blank" rel="noopener" aria-label="Latest video"></a>
+      <a class="hotspot button-watch" href="https://www.youtube.com/@ivangamer4life/videos" target="_blank" rel="noopener" aria-label="Watch now"></a>
+
+      <a class="hotspot card-live" href="https://www.twitch.tv/ivangamer4life" target="_blank" rel="noopener" aria-label="Live status"></a>
+      <a class="hotspot button-live" href="https://www.twitch.tv/ivangamer4life" target="_blank" rel="noopener" aria-label="Watch live"></a>
+
+      <button class="hotspot card-upcoming" data-panel="schedule" aria-label="Upcoming stream"></button>
+      <button class="hotspot button-reminder" id="reminderButton" aria-label="Set reminder"></button>
+
+      <button class="hotspot card-merch" data-panel="merch" aria-label="Featured merch"></button>
+      <button class="hotspot button-merch" data-panel="merch" aria-label="Coming soon"></button>
+
+      <button class="hotspot commander-card" data-panel="commander" aria-label="Commander profile"></button>
+
+      <!-- Step 2.2C: visible Supply Depot status integrated into the approved artwork area -->
+      <button class="supply-depot-status" data-panel="merch" aria-label="Open Official G4L Supply Depot">
+        <span>OFFICIAL G4L SUPPLY DEPOT</span>
+        <strong>COMING SOON</strong>
+      </button>
+    </section>
+
+
+
+    <!-- Step 2.2C: all core destinations remain inside the approved Command Center artwork. -->
+
+    <section class="lab-controls" aria-label="G4L Enhancement controls">
+      <strong>G4L Enhancement Lab v1.3</strong>
+      <button type="button" id="atmosphereToggle" aria-pressed="true">Living Atmosphere: On</button>
+      <button type="button" id="sparkIntensityToggle">Atmosphere: Balanced</button>
+      <button type="button" id="countdownFxToggle" aria-pressed="true">Countdown FX: On</button>
+      <button type="button" id="countdownDemoToggle">Countdown Preview: Normal</button>
+      <button type="button" id="liveSystemToggle" aria-pressed="true">Live System: On</button>
+      <button type="button" id="livePreviewToggle">Preview: Artwork</button>
+      <button type="button" id="step1ButtonToggle" aria-pressed="true">Premium Buttons: On</button>
+      <button type="button" id="phase2Toggle" aria-pressed="true">Phase 2: On</button>
+      <button type="button" id="buttonFxToggle" aria-pressed="true">Button FX: On</button>
+      <button type="button" id="heartbeatToggle" aria-pressed="true">Heartbeat: On</button>
+      <button type="button" id="soundToggle" aria-pressed="false">Sound: Off</button>
+      <button type="button" id="ambienceToggle" aria-pressed="false">Ambience: Off</button>
+      <button type="button" id="effectsToggle" aria-pressed="true">Particles: On</button>
+      <button type="button" id="replayBoot">Replay Intro</button>
+      <button type="button" id="statusDemo">Preview status: Artwork</button>
+      <span>Master artwork: <code>LOCKED</code></span>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <p class="eyebrow">G4L COMMAND MODULE</p>
+      <h2 id="modalTitle"></h2>
+      <div id="modalText" class="modal-content"></div>
+    </section>
+  </div>
+
+  <div id="twitchStatusPlayer" aria-hidden="true"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/lightning-v1.js"></script>
+  <script src="js/phase5-1-refinement.js"></script>
+</body>
+</html>

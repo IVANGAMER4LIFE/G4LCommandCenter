@@ -1,0 +1,29 @@
+/* Phase 4.1 approval preview — isolated vehicle and guard-soldier ambience.
+   The locked master artwork is untouched; every effect lives in this overlay. */
+.environment-polish-v1{position:absolute;inset:0;z-index:6;pointer-events:none;overflow:hidden}
+.environment-polish-v1 span{position:absolute;display:block}
+
+/* Tactical vehicle — powered-on ambience only. */
+.vehicle-underbody-glow{left:10.8%;top:42.2%;width:21.8%;height:6.3%;border-radius:50%;background:radial-gradient(ellipse,rgba(145,255,25,.34) 0,rgba(97,214,0,.14) 42%,transparent 72%);filter:blur(7px);mix-blend-mode:screen;animation:vehicleUnderGlow 4.8s ease-in-out infinite}
+.vehicle-headlight{width:1.55%;aspect-ratio:1;border-radius:50%;mix-blend-mode:screen;background:radial-gradient(circle,#fff 0 12%,#ffe7a0 22%,rgba(255,182,43,.66) 48%,transparent 74%);filter:blur(.25px) drop-shadow(0 0 5px rgba(255,196,70,.8));animation:vehicleHeadlightPulse 5.4s ease-in-out infinite}
+.vehicle-headlight-left{left:10.55%;top:36.5%}
+.vehicle-headlight-right{left:17.6%;top:36.1%;animation-delay:-2.1s}
+.vehicle-reflection{left:12.3%;top:30.2%;width:20.4%;height:14.8%;opacity:.15;mix-blend-mode:screen;background:linear-gradient(112deg,transparent 8%,rgba(191,255,121,.08) 34%,rgba(255,255,255,.22) 49%,rgba(118,227,255,.06) 61%,transparent 82%);clip-path:polygon(8% 30%,58% 0,100% 28%,89% 75%,25% 100%,0 68%);filter:blur(1.5px);animation:vehicleReflectionSweep 8.6s ease-in-out infinite}
+.vehicle-heat-shimmer{left:8.7%;top:39.7%;width:5.2%;height:8.4%;opacity:.18;mix-blend-mode:screen;background:repeating-linear-gradient(90deg,transparent 0 5px,rgba(190,255,115,.12) 6px 8px,transparent 9px 14px);clip-path:polygon(20% 0,100% 12%,82% 100%,0 82%);filter:blur(2.6px);animation:vehicleHeatShimmer 1.15s linear infinite}
+
+/* Guard soldier — eye colour sampled from the existing green visor. */
+.soldier-idle-copy{inset:0;background-image:url('../assets/g4l-approved-master.png');background-size:100% 100%;background-repeat:no-repeat;clip-path:polygon(68.2% 20.2%,76.6% 19.8%,79.1% 47.6%,72.4% 49.0%,67.0% 39.0%);opacity:.28;transform-origin:73.2% 37.5%;animation:soldierIdleBreath 5.8s ease-in-out infinite}
+.soldier-led{border-radius:50%;background:#45d8ff;box-shadow:0 0 4px #45d8ff,0 0 8px rgba(69,216,255,.65);animation:soldierLedBlink 4.6s steps(1,end) infinite}
+.soldier-led-shoulder{left:75.0%;top:34.7%;width:.28%;aspect-ratio:1}
+.soldier-led-arm{left:76.2%;top:38.3%;width:.22%;aspect-ratio:1;animation-delay:-2.1s}
+.soldier-weapon-pulse{left:69.9%;top:31.2%;width:5.6%;height:5.1%;opacity:.12;mix-blend-mode:screen;background:radial-gradient(ellipse at 48% 52%,rgba(190,255,96,.48),rgba(82,255,0,.14) 38%,transparent 72%);filter:blur(3px);clip-path:polygon(4% 42%,78% 0,100% 38%,76% 68%,12% 100%);animation:soldierWeaponPulse 6.2s ease-in-out infinite}
+
+@keyframes vehicleUnderGlow{0%,100%{opacity:.45;transform:scaleX(.94)}50%{opacity:.8;transform:scaleX(1.03)}}
+@keyframes vehicleHeadlightPulse{0%,100%{opacity:.68;transform:scale(.92)}48%{opacity:1;transform:scale(1.1)}58%{opacity:.86;transform:scale(1.02)}}
+@keyframes vehicleReflectionSweep{0%,15%{opacity:.04;transform:translateX(-5%) skewX(-5deg)}48%{opacity:.22}70%,100%{opacity:.03;transform:translateX(8%) skewX(-5deg)}}
+@keyframes vehicleHeatShimmer{0%{transform:translateY(0) skewX(0)}50%{transform:translateY(-2px) skewX(1.2deg)}100%{transform:translateY(0) skewX(0)}}
+@keyframes soldierIdleBreath{0%,100%{transform:translateY(0) scale(1);opacity:.22}50%{transform:translateY(-1.5px) scale(1.002);opacity:.31}}
+@keyframes soldierLedBlink{0%,70%,100%{opacity:.22}72%,78%{opacity:1}}
+@keyframes soldierWeaponPulse{0%,100%{opacity:.05;transform:scale(.94)}54%{opacity:.19;transform:scale(1.04)}}
+
+@media(prefers-reduced-motion:reduce){.environment-polish-v1{display:none}}

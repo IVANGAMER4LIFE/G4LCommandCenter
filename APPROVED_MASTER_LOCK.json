@@ -1,0 +1,26 @@
+{
+  "name": "G4L Command Center \u2014 Phase 3 Step 4 + Lightning v1.0 \u2014 LOCKED APPROVED MASTER",
+  "locked_at_utc": "2026-07-18T17:51:51Z",
+  "locked_files": {
+    "assets/g4l-approved-master.png": {
+      "sha256": "25fd229d320468bd9320924a8fd01adf62b3effa6c8437dfb3652d65a1684568",
+      "bytes": 2356845
+    },
+    "css/styles.css": {
+      "sha256": "b3d1014609a00e2c28c3e3f3ab99c6703dba24ea2162c077335b4578abbc5524",
+      "bytes": 44264
+    },
+    "js/script.js": {
+      "sha256": "09461bfbbfebdc6dfa4588565ac11fbc688cfae07580d23e6a0d10e750cb579a",
+      "bytes": 23641
+    },
+    "css/lightning-v1.css": {
+      "sha256": "e76147a9ca8e374f6a9e49b4a63d893003ccea75058d0c1c901a286d556bc16e",
+      "bytes": 2468
+    },
+    "js/lightning-v1.js": {
+      "sha256": "21cfd90b4a165f63a2ac3757fe5aa1bdc3099157f36fda1a61ad9bd19d338fc9",
+      "bytes": 2961
+    }
+  }
+}

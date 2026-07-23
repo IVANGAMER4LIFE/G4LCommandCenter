@@ -1,0 +1,95 @@
+{
+  "master_artwork": "assets/g4l-approved-master.png",
+  "sha256": "25fd229d320468bd9320924a8fd01adf62b3effa6c8437dfb3652d65a1684568",
+  "status": "LOCKED \u2014 VERIFIED AFTER PHASE 3 STEP 4",
+  "socials": {
+    "youtube": "ivangamer4life",
+    "twitch": "ivangamer4life",
+    "facebook": "ivangamer4life",
+    "tiktok": "ivangamer4lifeg4l",
+    "instagram": "ivangamer4lifeg4l",
+    "discord": "ivangamer4life"
+  },
+  "enhancement_layers": [
+    "soft_aura",
+    "electric_halo",
+    "gamma_core",
+    "cinematic_scan",
+    "ambient_particles",
+    "neon_button_energy"
+  ],
+  "visible_overlays": [
+    "boot_sequence",
+    "electric_halo",
+    "lightning",
+    "dust",
+    "cinematic_scan",
+    "neon_border_run",
+    "glass_hover",
+    "power_flash",
+    "ambience",
+    "online_heartbeat"
+  ],
+  "removed_layers": [
+    "electric_halo",
+    "soft_aura",
+    "gamma_core",
+    "cinematic_scan"
+  ],
+  "active_layers": [
+    "realistic_perimeter_lightning",
+    "enhanced_particles",
+    "neon_buttons",
+    "countdown",
+    "sounds",
+    "ambience",
+    "online_status",
+    "boot_sequence"
+  ],
+  "phase_2": [
+    "premium_neon_button_fx",
+    "glass_hover_sweep",
+    "3d_click_feedback",
+    "commander_panel_breathing",
+    "live_panel_pulse",
+    "heartbeat_animation",
+    "animated_countdown_digits",
+    "stronger_particles",
+    "optional_audio_retained"
+  ],
+  "phase_3_step_1": [
+    "premium_neon_border_flow",
+    "glass_light_sweep",
+    "corner_spark",
+    "deeper_3d_hover",
+    "refined_press_feedback",
+    "toggleable_button_fx"
+  ],
+  "phase_3_step_2": [
+    "smooth_online_offline_transitions",
+    "military_heartbeat",
+    "recording_light_pulse",
+    "live_card_energy",
+    "offline_idle_state",
+    "local_live_preview",
+    "twitch_status_sync"
+  ],
+  "phase_3_step_3": [
+    "tabular_fixed_width_digits",
+    "smooth_digit_change",
+    "cleaner_neon_readability",
+    "under_10_minute_mode",
+    "final_minute_mode",
+    "countdown_fx_toggle",
+    "countdown_preview_control"
+  ],
+  "phase_3_step_4": [
+    "three_layer_atmosphere",
+    "background_dust",
+    "mid_depth_particles",
+    "rare_foreground_sparks",
+    "ambient_frame_breathing",
+    "local_hover_environment",
+    "atmosphere_intensity_control"
+  ]
+}

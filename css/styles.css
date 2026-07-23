@@ -1,0 +1,1262 @@
+
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#020402;font-family:Arial,Helvetica,sans-serif}
+body{display:grid;place-items:center}
+.page-shell{width:min(100vw,1536px);padding:6px}
+.command-center{position:relative;width:100%;aspect-ratio:1536/1024;overflow:hidden;background:#000;border-radius:8px;isolation:isolate}
+.master-art{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;user-select:none}
+
+/* Invisible calibrated hotspots with premium neon feedback */
+.hotspot{
+  position:absolute;z-index:10;border:0;padding:0;background:transparent;cursor:pointer;border-radius:7px;
+  transition:transform .12s ease,filter .12s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.hotspot::before{
+  content:"";position:absolute;inset:1px;border-radius:inherit;opacity:0;pointer-events:none;
+  border:1px solid rgba(255,255,255,.75);
+  box-shadow:0 0 8px currentColor,0 0 18px color-mix(in srgb,currentColor 45%,transparent),inset 0 0 12px color-mix(in srgb,currentColor 16%,transparent);
+  transition:opacity .12s ease;
+}
+.hotspot::after{
+  content:"";position:absolute;inset:2px;border-radius:inherit;opacity:0;pointer-events:none;
+  background:
+    linear-gradient(90deg,transparent,currentColor,transparent) top/0 1px no-repeat,
+    linear-gradient(180deg,transparent,currentColor,transparent) right/1px 0 no-repeat,
+    linear-gradient(270deg,transparent,currentColor,transparent) bottom/0 1px no-repeat,
+    linear-gradient(0deg,transparent,currentColor,transparent) left/1px 0 no-repeat;
+  transition:opacity .12s ease,background-size .22s ease;
+}
+.hotspot:hover{transform:translateY(-1px) scale(1.008);filter:brightness(1.10)}
+.hotspot:hover::before,.hotspot:focus-visible::before{opacity:1}
+.hotspot:hover::after,.hotspot:focus-visible::after{opacity:.95;background-size:100% 1px,1px 100%,100% 1px,1px 100%}
+.hotspot:active{transform:translateY(1px) scale(.982);filter:brightness(.92)}
+.hotspot:focus-visible{outline:2px solid #fff;outline-offset:-4px}
+
+/* Left navigation */
+.nav-home{left:.75%;top:6.1%;width:10.65%;height:4.45%;color:#a8ff28}
+.nav-about{left:.75%;top:10.55%;width:10.65%;height:4.28%;color:#a8ff28}
+.nav-live{left:.75%;top:14.83%;width:10.65%;height:4.28%;color:#a8ff28}
+.nav-schedule{left:.75%;top:19.11%;width:10.65%;height:4.28%;color:#a8ff28}
+.nav-streams{left:.75%;top:23.39%;width:10.65%;height:4.28%;color:#a8ff28}
+.nav-community{left:.75%;top:27.67%;width:10.65%;height:4.28%;color:#a8ff28}
+.nav-merch{left:.75%;top:31.95%;width:10.65%;height:4.28%;color:#a8ff28}
+.nav-gallery{left:.75%;top:36.23%;width:10.65%;height:4.28%;color:#a8ff28}
+.nav-discord{left:.75%;top:40.51%;width:10.65%;height:4.28%;color:#a8ff28}
+.nav-contact{left:.75%;top:44.79%;width:10.65%;height:4.28%;color:#a8ff28}
+
+/* Social cards */
+.social-youtube{left:14.20%;top:51.35%;width:10.10%;height:15.00%;color:#ff3b32}
+.social-twitch{left:25.35%;top:51.35%;width:10.10%;height:15.00%;color:#a95cff}
+.social-facebook{left:36.50%;top:51.35%;width:10.10%;height:15.00%;color:#328dff}
+.social-tiktok{left:47.65%;top:51.35%;width:10.10%;height:15.00%;color:#33ebee}
+.social-instagram{left:58.80%;top:51.35%;width:10.10%;height:15.00%;color:#ff4dcc}
+.social-discord{left:69.95%;top:51.35%;width:10.10%;height:15.00%;color:#4f8cff}
+
+/* Feature cards */
+.card-latest{left:13.80%;top:67.75%;width:18.70%;height:25.20%;color:#a8ff28}
+.button-watch{left:18.00%;top:89.20%;width:12.80%;height:3.20%;color:#a8ff28}
+.card-live{left:33.00%;top:67.75%;width:15.70%;height:25.20%;color:#a8ff28}
+.button-live{left:34.40%;top:89.20%;width:12.75%;height:3.20%;color:#a8ff28}
+.card-upcoming{left:49.20%;top:67.75%;width:15.50%;height:25.20%;color:#a8ff28}
+.button-reminder{left:50.60%;top:89.20%;width:12.65%;height:3.20%;color:#a8ff28}
+.card-merch{left:65.00%;top:67.75%;width:16.70%;height:25.20%;color:#a8ff28}
+.button-merch{left:67.20%;top:89.20%;width:11.85%;height:3.20%;color:#a8ff28}
+.commander-card{left:82.70%;top:7.30%;width:16.30%;height:86.20%;color:#a8ff28}
+
+/* Countdown overlay: only covers the frozen digits, not labels or panel copy */
+.countdown-cover{
+  position:absolute;z-index:4;left:51.55%;top:75.30%;width:11.60%;height:4.55%;
+  border-radius:4px;pointer-events:none;
+  background:radial-gradient(ellipse at center,rgba(4,8,4,.995),rgba(2,5,3,.988));
+  box-shadow:inset 0 0 10px rgba(168,255,40,.06);
+}
+.countdown{
+  position:absolute;z-index:5;left:51.55%;top:76.13%;width:11.60%;
+  display:flex;justify-content:center;align-items:center;gap:.12em;pointer-events:none;
+  color:#b3ff25;font-size:clamp(10px,1.16vw,19px);font-weight:900;line-height:1;
+  letter-spacing:.015em;text-shadow:0 0 7px rgba(168,255,40,.70);
+}
+.countdown b{font-weight:900;animation:colonPulse 1s steps(1,end) infinite}
+@keyframes colonPulse{50%{opacity:.28}}
+
+/* Dynamic status only appears after Twitch confirms a state */
+.status-cover{
+  position:absolute;z-index:4;left:86.55%;top:55.20%;width:9.65%;height:8.70%;
+  border-radius:5px;background:radial-gradient(ellipse at center,rgba(4,9,4,.995),rgba(2,5,3,.99));
+  pointer-events:none;
+}
+.live-status-text{
+  position:absolute;z-index:5;left:86.55%;top:58.05%;width:9.65%;text-align:center;
+  pointer-events:none;font-size:clamp(13px,1.55vw,25px);font-weight:900;line-height:1;
+}
+.live-status-text.online{color:#b3ff25;text-shadow:0 0 10px rgba(168,255,40,.78)}
+.live-status-text.offline{color:#b7bdba;text-shadow:0 0 8px rgba(183,189,186,.35)}
+
+.lab-controls{
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;
+  padding:10px;color:#dfe7df;font-size:12px;
+}
+.lab-controls strong{color:#a8ff28;margin-right:4px}
+.lab-controls button{
+  border:1px solid rgba(168,255,40,.45);border-radius:999px;padding:7px 12px;
+  background:#071008;color:#fff;cursor:pointer;
+}
+.lab-controls button:hover{border-color:#a8ff28;box-shadow:0 0 10px rgba(168,255,40,.22)}
+.lab-controls code{color:#a8ff28}
+
+/* Dialogs */
+.modal-backdrop{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.82)}
+.modal-backdrop[hidden]{display:none}
+.modal{position:relative;width:min(92vw,560px);padding:30px;border:1px solid rgba(168,255,40,.62);border-radius:12px;background:#050805;color:#fff;box-shadow:0 0 30px rgba(168,255,40,.18)}
+.modal-close{position:absolute;right:10px;top:6px;border:0;background:transparent;color:#fff;font-size:30px;cursor:pointer}
+.eyebrow{margin:0;color:#a8ff28;font-size:12px;font-weight:800;letter-spacing:.16em}
+.modal h2{margin:.45em 0 .35em;font-size:clamp(25px,5vw,42px)}
+.modal p{line-height:1.55;color:#d7dfd4}
+
+.toast{
+  position:fixed;left:50%;bottom:20px;z-index:110;transform:translate(-50%,15px);
+  max-width:min(92vw,520px);padding:11px 15px;border:1px solid rgba(45,140,255,.75);
+  border-radius:9px;background:rgba(2,5,8,.97);color:#fff;opacity:0;pointer-events:none;transition:.2s;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+#twitchStatusPlayer{position:fixed;left:-5000px;top:0;width:400px;height:300px;overflow:hidden;pointer-events:none}
+
+@media(max-width:800px){
+  .page-shell{padding:2px}
+  .lab-controls span{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .hotspot,.hotspot::before,.hotspot::after{transition:none}
+  .countdown b{animation:none}
+}
+
+
+/* =====================================================
+   G4L WEBSITE ENHANCEMENT v1.2 — INDEPENDENT WOW LAYERS
+   ===================================================== */
+
+.fx-layer{
+  position:absolute;
+  z-index:3;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .25s ease;
+  mix-blend-mode:screen;
+}
+
+/* Coordinates are tied to the locked 1536×1024 approved artwork. */
+.commander-aura{
+  left:36.05%;
+  top:4.15%;
+  width:29.25%;
+  height:42.50%;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 46%,
+      rgba(184,255,71,.26) 0%,
+      rgba(116,255,26,.14) 30%,
+      rgba(51,170,0,.06) 48%,
+      transparent 70%);
+  filter:blur(10px);
+  animation:auraBreath 4.8s ease-in-out infinite;
+}
+
+.commander-halo{
+  left:36.00%;
+  top:2.25%;
+  width:29.40%;
+  aspect-ratio:1;
+  border-radius:50%;
+  border:1px solid rgba(167,255,48,.18);
+  box-shadow:
+    0 0 15px rgba(145,255,0,.22),
+    inset 0 0 14px rgba(145,255,0,.10);
+  animation:haloBreath 5.4s ease-in-out infinite;
+}
+
+.halo-segment{
+  position:absolute;
+  border-radius:50%;
+  border:2px solid transparent;
+  opacity:0;
+  filter:drop-shadow(0 0 5px #a8ff28);
+}
+.segment-a{
+  inset:1.5%;
+  border-top-color:#c5ff63;
+  animation:segmentA 5.4s linear infinite;
+}
+.segment-b{
+  inset:6.5%;
+  border-right-color:#8cff00;
+  animation:segmentB 6.2s linear infinite;
+}
+.segment-c{
+  inset:11%;
+  border-bottom-color:#e0ff92;
+  animation:segmentC 7s linear infinite;
+}
+
+.commander-core{
+  left:38.30%;
+  top:15.60%;
+  width:24.80%;
+  height:30.20%;
+  border-radius:46%;
+  background:
+    radial-gradient(ellipse at 50% 71%,
+      rgba(192,255,83,.27) 0%,
+      rgba(114,255,15,.13) 30%,
+      transparent 65%),
+    linear-gradient(110deg,
+      transparent 12%,
+      rgba(145,255,0,.10) 43%,
+      rgba(255,255,255,.05) 52%,
+      transparent 78%);
+  filter:blur(9px);
+  animation:corePulse 4.1s ease-in-out infinite;
+}
+
+.command-center.energy-a .commander-aura{opacity:.86}
+.command-center.energy-b .commander-halo{opacity:.78}
+.command-center.energy-c .commander-core{opacity:.92}
+
+/* Gentle cinematic light pass across the UI, not the artwork file. */
+.cinematic-scan{
+  inset:0;
+  opacity:.24;
+  background:linear-gradient(
+    110deg,
+    transparent 38%,
+    rgba(255,255,255,.025) 44%,
+    rgba(76,158,255,.09) 49%,
+    rgba(164,255,53,.06) 53%,
+    transparent 60%);
+  transform:translateX(-115%);
+  animation:cinematicSweep 11s ease-in-out infinite;
+}
+.command-center.scan-off .cinematic-scan{display:none}
+
+/* Particles are generated by JavaScript. */
+.sparks-layer{
+  inset:0;
+  opacity:1;
+  overflow:hidden;
+}
+.sparks-layer i{
+  position:absolute;
+  display:block;
+  width:2px;
+  height:2px;
+  border-radius:50%;
+  background:#baff48;
+  box-shadow:0 0 7px rgba(145,255,0,.95);
+  opacity:0;
+  animation:floatSpark linear infinite;
+}
+.command-center.particles-off .sparks-layer{display:none}
+
+/* Stronger neon feedback for visible clickable controls. */
+.hotspot:hover::before,
+.hotspot:focus-visible::before{
+  opacity:1;
+  animation:buttonEnergyPulse .72s ease-out both;
+}
+.hotspot:hover::after,
+.hotspot:focus-visible::after{
+  opacity:1;
+  background-size:100% 1px,1px 100%,100% 1px,1px 100%;
+  animation:borderCharge 1.1s linear infinite;
+}
+
+/* Live state provides additional energy without editing the background. */
+.command-center.stream-online .card-live::before,
+.command-center.stream-online .button-live::before{
+  opacity:1;
+  border-color:#b8ff3e;
+  box-shadow:
+    0 0 10px #91ff00,
+    0 0 22px rgba(145,255,0,.65),
+    inset 0 0 12px rgba(145,255,0,.20);
+  animation:onlinePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes auraBreath{
+  0%,100%{transform:scale(.985);filter:blur(11px) brightness(.82)}
+  50%{transform:scale(1.025);filter:blur(8px) brightness(1.24)}
+}
+@keyframes haloBreath{
+  0%,100%{transform:scale(.991);filter:brightness(.82)}
+  50%{transform:scale(1.012);filter:brightness(1.30)}
+}
+@keyframes segmentA{
+  0%,68%,100%{opacity:0;transform:rotate(0deg)}
+  70%{opacity:.98}
+  80%{opacity:.10;transform:rotate(145deg)}
+}
+@keyframes segmentB{
+  0%,50%,100%{opacity:0;transform:rotate(0deg)}
+  53%{opacity:.85}
+  64%{opacity:.08;transform:rotate(-120deg)}
+}
+@keyframes segmentC{
+  0%,81%,100%{opacity:0;transform:rotate(0deg)}
+  84%{opacity:.92}
+  94%{opacity:.08;transform:rotate(92deg)}
+}
+@keyframes corePulse{
+  0%,100%{transform:scale(.98);filter:blur(10px) brightness(.76)}
+  50%{transform:scale(1.045);filter:blur(7px) brightness(1.30)}
+}
+@keyframes cinematicSweep{
+  0%,9%{transform:translateX(-115%)}
+  26%,100%{transform:translateX(115%)}
+}
+@keyframes floatSpark{
+  0%{transform:translate3d(0,15px,0);opacity:0}
+  12%{opacity:.34}
+  70%{opacity:.18}
+  100%{transform:translate3d(16px,-140px,0);opacity:0}
+}
+@keyframes buttonEnergyPulse{
+  0%{filter:brightness(.8)}
+  44%{filter:brightness(1.55)}
+  100%{filter:brightness(1)}
+}
+@keyframes borderCharge{
+  0%{filter:hue-rotate(0deg)}
+  50%{filter:hue-rotate(22deg)}
+  100%{filter:hue-rotate(0deg)}
+}
+@keyframes onlinePulse{
+  0%,100%{filter:brightness(.85)}
+  50%{filter:brightness(1.42)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .commander-aura,.commander-halo,.commander-core,
+  .halo-segment,.cinematic-scan,.sparks-layer i{
+    animation:none!important;
+  }
+}
+
+/* ===== G4L v1.3 corrected visible WOW overlays ===== */
+.g4l-boot{
+  position:fixed;inset:0;z-index:1000;display:grid;place-items:center;overflow:hidden;
+  background:radial-gradient(circle at 50% 45%,rgba(30,130,255,.20),transparent 24%),
+             radial-gradient(circle at 50% 65%,rgba(145,255,0,.11),transparent 42%),#000;
+  transition:opacity .65s ease,visibility .65s ease;
+}
+.g4l-boot.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.g4l-boot-grid{
+  position:absolute;inset:-25%;
+  background-image:linear-gradient(rgba(30,140,255,.10) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(30,140,255,.10) 1px,transparent 1px);
+  background-size:38px 38px;
+  transform:perspective(560px) rotateX(62deg) translateY(24%);
+  animation:bootGrid 4.5s linear infinite;
+  mask-image:linear-gradient(to bottom,transparent,black 35%,transparent 92%);
+}
+.g4l-boot-panel{
+  position:relative;width:min(600px,88vw);padding:30px;text-align:center;
+  border:1px solid rgba(145,255,0,.48);background:rgba(0,7,9,.82);
+  box-shadow:0 0 45px rgba(30,130,255,.22),inset 0 0 30px rgba(145,255,0,.06);
+}
+.g4l-boot-logo{font:900 clamp(72px,12vw,140px)/.9 Arial;color:#eef3f5;letter-spacing:.06em}
+.g4l-boot-logo span{color:#278cff;text-shadow:0 0 8px white,0 0 26px #278cff,0 0 58px #0757ff;animation:fourPulse .8s ease-in-out infinite alternate}
+.g4l-boot-panel p{margin:24px 0 14px;color:#dfffe7;font:800 14px monospace;letter-spacing:.16em}
+.g4l-boot-progress{height:9px;border:1px solid rgba(145,255,0,.6);background:#031006;overflow:hidden}
+.g4l-boot-progress i{display:block;width:0;height:100%;background:linear-gradient(90deg,#91ff00,#2f94ff,#d7ff72);box-shadow:0 0 14px #91ff00;transition:width .28s ease}
+.g4l-boot-panel small{display:block;margin-top:12px;color:#72d8ff;font:700 11px monospace;letter-spacing:.13em}
+#skipBoot{margin-top:18px;border:1px solid rgba(255,255,255,.38);border-radius:999px;padding:8px 15px;background:transparent;color:#fff;cursor:pointer}
+
+.commander-halo{left:35.75%;top:2.0%;width:29.8%;opacity:0}
+.command-center.energy-b .commander-halo{opacity:1}
+.command-center.energy-b .commander-halo::before,
+.command-center.energy-b .commander-halo::after{
+  content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+}
+.command-center.energy-b .commander-halo::before{
+  border:2px solid rgba(182,255,73,.42);
+  box-shadow:0 0 16px rgba(145,255,0,.7),0 0 38px rgba(145,255,0,.34),inset 0 0 18px rgba(145,255,0,.22);
+  animation:ringBreath 2.7s ease-in-out infinite;
+}
+.command-center.energy-b .commander-halo::after{
+  inset:5%;border:1px dashed rgba(213,255,142,.48);animation:ringSpin 10s linear infinite;
+}
+.command-center.energy-b .halo-segment{
+  opacity:.9!important;
+  filter:drop-shadow(0 0 5px #fff) drop-shadow(0 0 12px #91ff00);
+}
+
+.lightning-layer{inset:0;z-index:5;opacity:1}
+.lightning-layer svg{width:100%;height:100%}
+.bolt{fill:none;stroke:#d9ff86;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;opacity:0;
+  filter:drop-shadow(0 0 3px white) drop-shadow(0 0 8px #91ff00) drop-shadow(0 0 16px rgba(145,255,0,.9))}
+.bolt-1{animation:bolt1 5.2s infinite}
+.bolt-2{animation:bolt2 7.1s infinite}
+.bolt-3{animation:bolt3 8.4s infinite}
+.command-center.lightning-off .lightning-layer{display:none}
+
+.dust-layer{inset:0;z-index:3;opacity:1;overflow:hidden}
+.dust-layer i{position:absolute;display:block;border-radius:50%;background:rgba(230,238,226,.58);box-shadow:0 0 6px rgba(255,255,255,.2);opacity:0;animation:dustDrift linear infinite}
+.command-center.particles-off .dust-layer{display:none}
+
+.power-flash{inset:0;z-index:8;opacity:0;background:radial-gradient(circle at 50% 22%,rgba(187,255,79,.22),transparent 32%),linear-gradient(180deg,rgba(45,145,255,.12),transparent 48%)}
+.power-flash.active{animation:powerFlash .68s ease-out both}
+
+.cinematic-scan{
+  opacity:.38;
+  background:linear-gradient(110deg,transparent 28%,rgba(255,255,255,.04) 39%,rgba(45,145,255,.20) 47%,rgba(173,255,59,.17) 53%,rgba(255,255,255,.04) 60%,transparent 70%);
+  animation:scanStrong 7s ease-in-out infinite;
+}
+
+.hotspot{overflow:hidden}
+.hotspot::before{
+  box-shadow:0 0 11px currentColor,0 0 24px color-mix(in srgb,currentColor 58%,transparent),inset 0 0 14px color-mix(in srgb,currentColor 22%,transparent);
+}
+.hotspot::after{
+  background:
+    linear-gradient(90deg,transparent,currentColor 44%,white 52%,currentColor 60%,transparent) top/38% 2px no-repeat,
+    linear-gradient(180deg,transparent,currentColor 44%,white 52%,currentColor 60%,transparent) right/2px 38% no-repeat,
+    linear-gradient(270deg,transparent,currentColor 44%,white 52%,currentColor 60%,transparent) bottom/38% 2px no-repeat,
+    linear-gradient(0deg,transparent,currentColor 44%,white 52%,currentColor 60%,transparent) left/2px 38% no-repeat;
+}
+.hotspot:hover::after,.hotspot:focus-visible::after{animation:borderRun .95s linear infinite}
+.hotspot:hover{transform:translateY(-2px) scale(1.015);filter:brightness(1.18) saturate(1.12)}
+.hotspot:active{transform:translateY(1px) scale(.972);filter:brightness(.84)}
+.hotspot .gloss{position:absolute;inset:-22%;background:linear-gradient(110deg,transparent 34%,rgba(255,255,255,.28) 49%,transparent 64%);transform:translateX(-125%);pointer-events:none}
+.hotspot:hover .gloss{animation:gloss .62s ease-out both}
+
+.command-center.stream-online .card-live::before,
+.command-center.stream-online .button-live::before{opacity:1;animation:heartbeat 1.12s ease-in-out infinite}
+
+.lab-controls button.active{border-color:#a8ff28;box-shadow:0 0 14px rgba(145,255,0,.35),inset 0 0 10px rgba(145,255,0,.08)}
+
+@keyframes bootGrid{to{background-position:0 76px,76px 0}}
+@keyframes fourPulse{to{filter:brightness(1.45);transform:scale(1.035)}}
+@keyframes ringBreath{0%,100%{transform:scale(.984);opacity:.42}50%{transform:scale(1.026);opacity:1}}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
+@keyframes bolt1{0%,64%,100%{opacity:0}65%{opacity:1}67%{opacity:.12}69%{opacity:.95}72%{opacity:0}}
+@keyframes bolt2{0%,42%,100%{opacity:0}43%{opacity:.95}45%{opacity:.12}48%{opacity:.82}51%{opacity:0}}
+@keyframes bolt3{0%,79%,100%{opacity:0}80%{opacity:.92}82%{opacity:.15}85%{opacity:.75}88%{opacity:0}}
+@keyframes dustDrift{0%{transform:translate3d(-20px,18px,0);opacity:0}16%{opacity:.22}72%{opacity:.12}100%{transform:translate3d(95px,-105px,0);opacity:0}}
+@keyframes powerFlash{0%{opacity:0}18%{opacity:.9}42%{opacity:.16}100%{opacity:0}}
+@keyframes scanStrong{0%,5%{transform:translateX(-130%)}38%,100%{transform:translateX(130%)}}
+@keyframes borderRun{0%{background-position:-45% 0,100% -45%,145% 100%,0 145%}100%{background-position:145% 0,100% 145%,-45% 100%,0 -45%}}
+@keyframes gloss{to{transform:translateX(125%)}}
+@keyframes heartbeat{0%,100%{filter:brightness(.86)}18%{filter:brightness(1.58)}32%{filter:brightness(.96)}46%{filter:brightness(1.36)}70%{filter:brightness(.93)}}
+
+@media(prefers-reduced-motion:reduce){
+  .g4l-boot{display:none}
+  .bolt,.dust-layer i,.commander-halo::before,.commander-halo::after{animation:none!important}
+}
+
+/* v1.4 clean energy overrides */
+.commander-aura,.commander-halo,.commander-core,.cinematic-scan{display:none!important}
+
+.lightning-layer{inset:0;z-index:4;opacity:1;pointer-events:none}
+.lightning-layer svg{width:100%;height:100%}
+.real-bolt{
+  fill:none;stroke:#dfff9b;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;opacity:0;
+  filter:drop-shadow(0 0 1px rgba(255,255,255,.95))
+         drop-shadow(0 0 4px rgba(145,255,0,.85))
+         drop-shadow(0 0 8px rgba(75,185,0,.45));
+}
+.rb-1{animation:realFlash1 8.2s infinite}
+.rb-2{animation:realFlash2 10.4s infinite}
+.rb-3{animation:realFlash3 11.7s infinite}
+.rb-4{animation:realFlash4 13.1s infinite}
+@keyframes realFlash1{0%,76%,100%{opacity:0}77%{opacity:.82}78%{opacity:.08}79%{opacity:.58}80%{opacity:0}}
+@keyframes realFlash2{0%,54%,100%{opacity:0}55%{opacity:.72}56%{opacity:.10}57%{opacity:.52}58%{opacity:0}}
+@keyframes realFlash3{0%,84%,100%{opacity:0}85%{opacity:.66}86%{opacity:.08}87%{opacity:.44}88%{opacity:0}}
+@keyframes realFlash4{0%,64%,100%{opacity:0}65%{opacity:.70}66%{opacity:.10}67%{opacity:.48}68%{opacity:0}}
+
+.sparks-layer i{
+  width:3px!important;height:3px!important;background:#c9ff75!important;
+  box-shadow:0 0 6px rgba(201,255,117,.95),0 0 12px rgba(145,255,0,.50)!important;
+}
+.dust-layer i{
+  background:rgba(225,238,220,.78)!important;
+  box-shadow:0 0 7px rgba(255,255,255,.28)!important;
+}
+
+.countdown-cover{
+  left:52.10%!important;top:76.05%!important;width:10.65%!important;height:3.70%!important;
+  border-radius:3px!important;
+}
+.countdown{
+  left:52.10%!important;top:76.78%!important;width:10.65%!important;
+  font-size:clamp(9px,1.01vw,16px)!important;letter-spacing:.005em!important;
+}
+
+/* ===== v1.4.2 visual correction overrides ===== */
+/* Remove the artificial drawn lightning completely. */
+.lightning-layer{display:none!important}
+
+/* Fully mask the frozen artwork digits, then show one clean live timer. */
+.countdown-cover{
+  left:50.55%!important;
+  top:74.65%!important;
+  width:13.25%!important;
+  height:6.15%!important;
+  border-radius:5px!important;
+  background:
+    radial-gradient(ellipse at center,rgba(10,14,9,.998),rgba(3,6,4,.996) 72%)!important;
+  box-shadow:
+    inset 0 0 14px rgba(145,255,0,.08),
+    0 0 8px rgba(0,0,0,.55)!important;
+}
+.countdown{
+  left:50.90%!important;
+  top:76.35%!important;
+  width:12.55%!important;
+  font-size:clamp(10px,1.16vw,19px)!important;
+  letter-spacing:.012em!important;
+  color:#b8ff30!important;
+  text-shadow:0 0 6px rgba(184,255,48,.90),0 0 13px rgba(145,255,0,.36)!important;
+}
+
+/* Particles are now clearly visible but remain atmospheric. */
+.sparks-layer i{
+  width:4px!important;
+  height:4px!important;
+  opacity:0;
+  background:#d9ff9a!important;
+  box-shadow:
+    0 0 5px rgba(255,255,255,.95),
+    0 0 10px rgba(180,255,65,.92),
+    0 0 18px rgba(145,255,0,.45)!important;
+  animation-name:visibleSpark!important;
+}
+.dust-layer i{
+  opacity:0;
+  background:rgba(235,244,230,.88)!important;
+  box-shadow:0 0 8px rgba(255,255,255,.38)!important;
+  animation-name:visibleDust!important;
+}
+@keyframes visibleSpark{
+  0%{transform:translate3d(0,18px,0) scale(.65);opacity:0}
+  12%{opacity:.62}
+  55%{opacity:.42}
+  82%{opacity:.25}
+  100%{transform:translate3d(28px,-165px,0) scale(1.15);opacity:0}
+}
+@keyframes visibleDust{
+  0%{transform:translate3d(-25px,20px,0);opacity:0}
+  15%{opacity:.34}
+  60%{opacity:.24}
+  100%{transform:translate3d(110px,-120px,0);opacity:0}
+}
+
+/* =========================================================
+   G4L PHASE 2 — PREMIUM INTERFACE OVERLAYS ONLY
+   Artwork remains untouched.
+   ========================================================= */
+
+.phase2-layer{
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  overflow:hidden;
+}
+.command-center.phase2-off .phase2-layer{display:none}
+
+/* Slow global frame breathing: subtle power-on feeling */
+.frame-breathe{
+  position:absolute;
+  inset:0;
+  box-shadow:
+    inset 0 0 54px rgba(145,255,0,.05),
+    inset 0 0 110px rgba(30,130,255,.035);
+  animation:frameBreath 5.8s ease-in-out infinite;
+}
+
+/* Commander panel glow only — no effect across the avatar */
+.commander-panel-glow{
+  position:absolute;
+  left:82.4%;
+  top:7.0%;
+  width:16.8%;
+  height:86.5%;
+  border-radius:8px;
+  border:1px solid rgba(169,255,48,.08);
+  box-shadow:
+    0 0 0 rgba(145,255,0,0),
+    inset 0 0 18px rgba(145,255,0,.03);
+  animation:commanderPanelBreath 4.4s ease-in-out infinite;
+}
+
+/* Live card glow layer */
+.live-panel-glow{
+  position:absolute;
+  left:33.0%;
+  top:67.75%;
+  width:15.70%;
+  height:25.20%;
+  border-radius:8px;
+  opacity:.38;
+  box-shadow:0 0 14px rgba(255,50,40,.18), inset 0 0 12px rgba(255,60,50,.05);
+  animation:livePanelIdle 3.1s ease-in-out infinite;
+}
+.command-center.stream-online .live-panel-glow{
+  opacity:1;
+  animation:livePanelOnline 1.25s ease-in-out infinite;
+}
+
+/* Heartbeat line overlay, aligned inside Commander status panel */
+.heartbeat-overlay{
+  position:absolute;
+  left:84.55%;
+  top:63.25%;
+  width:12.45%;
+  height:5.2%;
+  overflow:hidden;
+  opacity:.78;
+  mask-image:linear-gradient(90deg,transparent 0%,black 12%,black 88%,transparent 100%);
+}
+.heartbeat-overlay i{
+  position:absolute;
+  left:-55%;
+  top:45%;
+  width:56%;
+  height:2px;
+  background:#b5ff27;
+  box-shadow:0 0 7px rgba(145,255,0,.85);
+  animation:heartbeatTravel 2.1s linear infinite;
+}
+.heartbeat-overlay i::before{
+  content:"";
+  position:absolute;
+  right:22%;
+  top:-12px;
+  width:42px;
+  height:26px;
+  background:
+    linear-gradient(120deg,transparent 0 18%,#b5ff27 19% 21%,transparent 22% 34%,
+      #b5ff27 35% 38%,transparent 39% 48%,#b5ff27 49% 52%,transparent 53%);
+  filter:drop-shadow(0 0 4px rgba(145,255,0,.8));
+}
+.command-center.heartbeat-off .heartbeat-overlay{display:none}
+
+/* Premium cyberpunk hotspots */
+.hotspot{
+  isolation:isolate;
+  transform-origin:center;
+}
+.hotspot::before{
+  border:1px solid color-mix(in srgb,currentColor 72%,white 28%);
+  box-shadow:
+    0 0 8px currentColor,
+    0 0 18px color-mix(in srgb,currentColor 48%,transparent),
+    inset 0 0 12px color-mix(in srgb,currentColor 18%,transparent);
+}
+.hotspot::after{
+  background:
+    linear-gradient(90deg,transparent 0%,currentColor 37%,white 50%,currentColor 63%,transparent 100%) top/34% 2px no-repeat,
+    linear-gradient(180deg,transparent 0%,currentColor 37%,white 50%,currentColor 63%,transparent 100%) right/2px 34% no-repeat,
+    linear-gradient(270deg,transparent 0%,currentColor 37%,white 50%,currentColor 63%,transparent 100%) bottom/34% 2px no-repeat,
+    linear-gradient(0deg,transparent 0%,currentColor 37%,white 50%,currentColor 63%,transparent 100%) left/2px 34% no-repeat;
+}
+.hotspot .phase2-gloss{
+  position:absolute;
+  inset:-24%;
+  z-index:2;
+  pointer-events:none;
+  background:linear-gradient(110deg,transparent 34%,rgba(255,255,255,.30) 49%,transparent 64%);
+  transform:translateX(-130%);
+}
+.hotspot:hover{
+  transform:translateY(-2px) scale(1.016);
+  filter:brightness(1.18) saturate(1.13);
+}
+.hotspot:hover::before,
+.hotspot:focus-visible::before{
+  opacity:1;
+  animation:hotspotPulse .92s ease-out infinite alternate;
+}
+.hotspot:hover::after,
+.hotspot:focus-visible::after{
+  opacity:1;
+  animation:phase2BorderRun .92s linear infinite;
+}
+.hotspot:hover .phase2-gloss{
+  animation:phase2Gloss .62s ease-out both;
+}
+.hotspot:active{
+  transform:translateY(1px) scale(.972);
+  filter:brightness(.84);
+}
+.hotspot.phase2-click{
+  animation:phase2Click .34s ease-out both;
+}
+.command-center.button-fx-off .hotspot::before,
+.command-center.button-fx-off .hotspot::after,
+.command-center.button-fx-off .hotspot .phase2-gloss{display:none!important}
+
+/* Countdown pulse without changing its position */
+.countdown span{
+  display:inline-block;
+  min-width:1.15em;
+  text-align:center;
+  transition:transform .16s ease,filter .16s ease;
+}
+.countdown span.tick{
+  animation:digitTick .28s ease-out both;
+}
+.countdown b{
+  animation:colonSoft 1s steps(1,end) infinite;
+}
+
+/* More atmospheric particles */
+.sparks-layer i{
+  opacity:.42!important;
+  animation-duration:7s!important;
+}
+.dust-layer i{
+  opacity:.30!important;
+}
+
+/* Status transitions */
+.live-status-text{
+  transition:opacity .35s ease,transform .35s ease,color .35s ease;
+}
+.live-status-text.online{
+  animation:statusOnlineBreath 1.6s ease-in-out infinite;
+}
+.live-status-text.offline{
+  opacity:.72;
+}
+
+@keyframes frameBreath{
+  0%,100%{filter:brightness(.94);opacity:.50}
+  50%{filter:brightness(1.12);opacity:.86}
+}
+@keyframes commanderPanelBreath{
+  0%,100%{box-shadow:0 0 8px rgba(145,255,0,.08),inset 0 0 16px rgba(145,255,0,.025)}
+  50%{box-shadow:0 0 20px rgba(145,255,0,.22),inset 0 0 24px rgba(145,255,0,.07)}
+}
+@keyframes livePanelIdle{
+  0%,100%{filter:brightness(.90)}
+  50%{filter:brightness(1.05)}
+}
+@keyframes livePanelOnline{
+  0%,100%{box-shadow:0 0 10px rgba(255,40,35,.28),inset 0 0 9px rgba(255,60,50,.08)}
+  50%{box-shadow:0 0 24px rgba(255,40,35,.62),inset 0 0 17px rgba(255,60,50,.18)}
+}
+@keyframes heartbeatTravel{
+  from{transform:translateX(0)}
+  to{transform:translateX(280%)}
+}
+@keyframes hotspotPulse{
+  from{filter:brightness(.95)}
+  to{filter:brightness(1.45)}
+}
+@keyframes phase2BorderRun{
+  0%{background-position:-40% 0,100% -40%,140% 100%,0 140%}
+  100%{background-position:140% 0,100% 140%,-40% 100%,0 -40%}
+}
+@keyframes phase2Gloss{
+  to{transform:translateX(130%)}
+}
+@keyframes phase2Click{
+  0%{transform:translateY(1px) scale(.972);filter:brightness(.82)}
+  55%{filter:brightness(1.30)}
+  100%{transform:none;filter:none}
+}
+@keyframes digitTick{
+  0%{transform:translateY(-3px) scale(1.08);filter:brightness(1.7)}
+  100%{transform:none;filter:none}
+}
+@keyframes colonSoft{
+  50%{opacity:.36}
+}
+@keyframes statusOnlineBreath{
+  0%,100%{text-shadow:0 0 8px rgba(145,255,0,.60)}
+  50%{text-shadow:0 0 16px rgba(145,255,0,.98)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .frame-breathe,.commander-panel-glow,.live-panel-glow,.heartbeat-overlay i,
+  .hotspot::before,.hotspot::after,.countdown span,.live-status-text{animation:none!important}
+}
+
+/* =========================================================
+   PHASE 3 — STEP 1: PREMIUM BUTTONS
+   Website interaction layer only.
+   ========================================================= */
+
+.hotspot{
+  perspective:700px;
+  transform-style:preserve-3d;
+  will-change:transform,filter;
+}
+
+.hotspot::before{
+  inset:1px;
+  border:1px solid color-mix(in srgb,currentColor 72%,white 28%);
+  box-shadow:
+    0 0 7px color-mix(in srgb,currentColor 88%,white 12%),
+    0 0 18px color-mix(in srgb,currentColor 50%,transparent),
+    0 0 30px color-mix(in srgb,currentColor 24%,transparent),
+    inset 0 0 13px color-mix(in srgb,currentColor 18%,transparent);
+  opacity:0;
+}
+
+.hotspot::after{
+  inset:2px;
+  background:
+    linear-gradient(90deg,transparent 0%,currentColor 36%,white 50%,currentColor 64%,transparent 100%) top/30% 2px no-repeat,
+    linear-gradient(180deg,transparent 0%,currentColor 36%,white 50%,currentColor 64%,transparent 100%) right/2px 30% no-repeat,
+    linear-gradient(270deg,transparent 0%,currentColor 36%,white 50%,currentColor 64%,transparent 100%) bottom/30% 2px no-repeat,
+    linear-gradient(0deg,transparent 0%,currentColor 36%,white 50%,currentColor 64%,transparent 100%) left/2px 30% no-repeat;
+  opacity:0;
+}
+
+.hotspot .premium-glass{
+  position:absolute;
+  inset:-28%;
+  z-index:3;
+  pointer-events:none;
+  transform:translateX(-145%) skewX(-12deg);
+  background:linear-gradient(
+    110deg,
+    transparent 32%,
+    rgba(255,255,255,.06) 42%,
+    rgba(255,255,255,.34) 50%,
+    rgba(255,255,255,.08) 58%,
+    transparent 68%
+  );
+}
+
+.hotspot .corner-spark{
+  position:absolute;
+  right:4px;
+  top:4px;
+  z-index:4;
+  width:4px;
+  height:4px;
+  border-radius:50%;
+  background:white;
+  box-shadow:0 0 5px white,0 0 12px currentColor;
+  opacity:0;
+  pointer-events:none;
+}
+
+.hotspot:hover,
+.hotspot:focus-visible{
+  transform:translateY(-3px) scale(1.018) rotateX(.7deg);
+  filter:brightness(1.20) saturate(1.16);
+}
+
+.hotspot:hover::before,
+.hotspot:focus-visible::before{
+  opacity:1;
+  animation:premiumGlow 1.05s ease-in-out infinite alternate;
+}
+
+.hotspot:hover::after,
+.hotspot:focus-visible::after{
+  opacity:1;
+  animation:premiumBorderRun .82s linear infinite;
+}
+
+.hotspot:hover .premium-glass,
+.hotspot:focus-visible .premium-glass{
+  animation:premiumGlassSweep .64s ease-out both;
+}
+
+.hotspot:hover .corner-spark,
+.hotspot:focus-visible .corner-spark{
+  animation:cornerSpark .9s ease-out both;
+}
+
+.hotspot:active{
+  transform:translateY(2px) scale(.964) rotateX(-1.4deg);
+  filter:brightness(.80) saturate(.92);
+}
+
+.hotspot.premium-press{
+  animation:premiumPress .34s cubic-bezier(.2,.75,.2,1) both;
+}
+
+.command-center.premium-buttons-off .hotspot::before,
+.command-center.premium-buttons-off .hotspot::after,
+.command-center.premium-buttons-off .premium-glass,
+.command-center.premium-buttons-off .corner-spark{
+  display:none!important;
+}
+.command-center.premium-buttons-off .hotspot:hover,
+.command-center.premium-buttons-off .hotspot:focus-visible,
+.command-center.premium-buttons-off .hotspot:active{
+  transform:none;
+  filter:none;
+}
+
+@keyframes premiumGlow{
+  from{filter:brightness(.95);opacity:.72}
+  to{filter:brightness(1.48);opacity:1}
+}
+@keyframes premiumBorderRun{
+  0%{background-position:-38% 0,100% -38%,138% 100%,0 138%}
+  100%{background-position:138% 0,100% 138%,-38% 100%,0 -38%}
+}
+@keyframes premiumGlassSweep{
+  to{transform:translateX(145%) skewX(-12deg)}
+}
+@keyframes cornerSpark{
+  0%{opacity:0;transform:scale(.2)}
+  28%{opacity:1;transform:scale(1.7)}
+  60%{opacity:.8;transform:translate(-8px,8px) scale(.9)}
+  100%{opacity:0;transform:translate(-16px,16px) scale(.2)}
+}
+@keyframes premiumPress{
+  0%{transform:translateY(2px) scale(.964);filter:brightness(.80)}
+  48%{transform:translateY(0) scale(1.025);filter:brightness(1.38)}
+  100%{transform:none;filter:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .hotspot::before,.hotspot::after,.premium-glass,.corner-spark,.hotspot.premium-press{
+    animation:none!important;
+  }
+}
+
+/* =========================================================
+   PHASE 3 — STEP 2: LIVE COMMAND SYSTEM
+   ========================================================= */
+
+.live-system-layer{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:4;
+}
+.command-center.live-system-off .live-system-layer{display:none}
+
+/* Recording light aligned to the live card */
+.recording-indicator{
+  position:absolute;
+  left:35.18%;
+  top:70.35%;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#7b7f7d;
+  box-shadow:0 0 5px rgba(160,165,162,.35);
+  opacity:.45;
+  transition:background .45s ease,box-shadow .45s ease,opacity .45s ease,transform .45s ease;
+}
+.command-center.stream-online .recording-indicator{
+  background:#ff3028;
+  opacity:1;
+  box-shadow:0 0 6px #fff,0 0 13px #ff3028,0 0 24px rgba(255,48,40,.75);
+  animation:recordingBreath 1.45s ease-in-out infinite;
+}
+.command-center.stream-offline .recording-indicator{
+  background:#6f7471;
+  opacity:.34;
+}
+
+/* Military-style heartbeat */
+.status-wave{
+  position:absolute;
+  left:84.35%;
+  top:63.05%;
+  width:12.7%;
+  height:5.4%;
+  overflow:hidden;
+  opacity:.35;
+  transition:opacity .45s ease,filter .45s ease;
+  mask-image:linear-gradient(90deg,transparent 0%,black 12%,black 88%,transparent 100%);
+}
+.status-wave i{
+  position:absolute;
+  left:-62%;
+  top:48%;
+  width:58%;
+  height:2px;
+  background:#8e9691;
+  box-shadow:0 0 4px rgba(150,160,155,.40);
+}
+.status-wave i::before{
+  content:"";
+  position:absolute;
+  right:20%;
+  top:-12px;
+  width:46px;
+  height:26px;
+  background:
+    linear-gradient(118deg,
+      transparent 0 18%,
+      currentColor 19% 21%,
+      transparent 22% 34%,
+      currentColor 35% 38%,
+      transparent 39% 47%,
+      currentColor 48% 51%,
+      transparent 52%);
+}
+.command-center.stream-online .status-wave{
+  opacity:.95;
+  filter:drop-shadow(0 0 5px rgba(145,255,0,.65));
+}
+.command-center.stream-online .status-wave i{
+  color:#b7ff2a;
+  background:#b7ff2a;
+  box-shadow:0 0 8px rgba(145,255,0,.95);
+  animation:liveHeartbeat 1.9s linear infinite;
+}
+.command-center.stream-offline .status-wave{
+  opacity:.28;
+}
+.command-center.stream-offline .status-wave i{
+  color:#747b77;
+  background:#747b77;
+  animation:idleHeartbeat 4.6s linear infinite;
+}
+
+/* Energy around the live card */
+.live-card-energy{
+  position:absolute;
+  left:33.0%;
+  top:67.75%;
+  width:15.70%;
+  height:25.20%;
+  border-radius:8px;
+  opacity:.24;
+  border:1px solid rgba(255,70,55,.08);
+  box-shadow:0 0 10px rgba(255,40,35,.15),inset 0 0 10px rgba(255,60,50,.04);
+  transition:opacity .5s ease,box-shadow .5s ease,filter .5s ease;
+}
+.command-center.stream-online .live-card-energy{
+  opacity:1;
+  border-color:rgba(255,75,60,.44);
+  box-shadow:
+    0 0 14px rgba(255,40,35,.45),
+    0 0 30px rgba(255,40,35,.18),
+    inset 0 0 16px rgba(255,60,50,.12);
+  animation:liveCardHeartbeat 1.55s ease-in-out infinite;
+}
+.command-center.stream-offline .live-card-energy{
+  opacity:.14;
+  filter:saturate(.35) brightness(.78);
+}
+
+/* Gentle offline calming overlay over live card only */
+.offline-veil{
+  position:absolute;
+  left:33.0%;
+  top:67.75%;
+  width:15.70%;
+  height:25.20%;
+  border-radius:8px;
+  background:rgba(20,24,22,.16);
+  opacity:0;
+  transition:opacity .55s ease;
+}
+.command-center.stream-offline .offline-veil{opacity:1}
+
+/* Smooth text status */
+.live-status-text{
+  transition:
+    opacity .42s ease,
+    transform .42s ease,
+    color .42s ease,
+    text-shadow .42s ease;
+}
+.live-status-text.status-enter{
+  animation:statusEnter .52s ease-out both;
+}
+.live-status-text.online{
+  color:#b7ff2a;
+  text-shadow:0 0 9px rgba(145,255,0,.72),0 0 18px rgba(145,255,0,.28);
+}
+.live-status-text.offline{
+  color:#a6aca8;
+  text-shadow:0 0 5px rgba(166,172,168,.25);
+}
+
+/* Make existing heartbeat overlay defer to Step 2 */
+.heartbeat-overlay{display:none!important}
+
+@keyframes recordingBreath{
+  0%,100%{transform:scale(.88);filter:brightness(.9)}
+  50%{transform:scale(1.18);filter:brightness(1.35)}
+}
+@keyframes liveHeartbeat{
+  from{transform:translateX(0)}
+  to{transform:translateX(292%)}
+}
+@keyframes idleHeartbeat{
+  0%{transform:translateX(0);opacity:.25}
+  55%{opacity:.25}
+  100%{transform:translateX(292%);opacity:.10}
+}
+@keyframes liveCardHeartbeat{
+  0%,100%{filter:brightness(.92)}
+  18%{filter:brightness(1.35)}
+  32%{filter:brightness(.98)}
+  48%{filter:brightness(1.22)}
+  70%{filter:brightness(.94)}
+}
+@keyframes statusEnter{
+  0%{opacity:0;transform:translateY(4px) scale(.96)}
+  100%{opacity:1;transform:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .recording-indicator,.status-wave i,.live-card-energy,.live-status-text{
+    animation:none!important;
+  }
+}
+
+/* =========================================================
+   PHASE 3 — STEP 3: PREMIUM COUNTDOWN SYSTEM
+   ========================================================= */
+
+.countdown{
+  display:grid!important;
+  grid-template-columns:2.3em .55em 2.3em .55em 2.3em .55em 2.3em;
+  align-items:center;
+  justify-content:center;
+  column-gap:0;
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;
+  text-rendering:geometricPrecision;
+}
+
+.countdown span{
+  position:relative;
+  display:inline-grid!important;
+  place-items:center;
+  min-width:2.3em!important;
+  height:1.55em;
+  overflow:hidden;
+  border-radius:3px;
+  color:#b8ff2d;
+  background:
+    linear-gradient(180deg,rgba(18,28,14,.55),rgba(3,7,4,.25));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    inset 0 -1px 0 rgba(0,0,0,.42);
+  text-shadow:
+    0 0 6px rgba(145,255,0,.78),
+    0 0 12px rgba(145,255,0,.30);
+  transition:
+    transform .16s ease,
+    filter .16s ease,
+    color .25s ease,
+    text-shadow .25s ease;
+}
+
+.countdown span::before{
+  content:"";
+  position:absolute;
+  left:8%;
+  right:8%;
+  top:50%;
+  height:1px;
+  background:rgba(0,0,0,.28);
+  box-shadow:0 1px 0 rgba(255,255,255,.03);
+  pointer-events:none;
+}
+
+.countdown b{
+  display:grid;
+  place-items:center;
+  min-width:.55em;
+  color:#9eff18;
+  text-shadow:0 0 6px rgba(145,255,0,.66);
+  animation:countdownColon 1s steps(1,end) infinite;
+}
+
+.countdown span.countdown-tick{
+  animation:countdownDigitChange .34s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.countdown span.countdown-warning{
+  color:#d9ff72;
+  text-shadow:
+    0 0 8px rgba(183,255,42,.94),
+    0 0 16px rgba(145,255,0,.48);
+}
+
+.countdown.countdown-urgent{
+  animation:countdownUrgentBreath 1.4s ease-in-out infinite;
+}
+
+.countdown.countdown-final-minute{
+  animation:countdownFinalMinute .75s ease-in-out infinite;
+}
+
+.command-center.countdown-fx-off .countdown span,
+.command-center.countdown-fx-off .countdown b,
+.command-center.countdown-fx-off .countdown{
+  animation:none!important;
+  transition:none!important;
+}
+
+@keyframes countdownDigitChange{
+  0%{
+    transform:translateY(-5px) scale(1.12);
+    filter:brightness(1.7);
+  }
+  45%{
+    transform:translateY(1px) scale(.98);
+  }
+  100%{
+    transform:none;
+    filter:none;
+  }
+}
+
+@keyframes countdownColon{
+  50%{opacity:.28}
+}
+
+@keyframes countdownUrgentBreath{
+  0%,100%{filter:brightness(.96)}
+  50%{filter:brightness(1.24)}
+}
+
+@keyframes countdownFinalMinute{
+  0%,100%{filter:brightness(.96)}
+  50%{filter:brightness(1.38)}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .countdown,.countdown span,.countdown b{
+    animation:none!important;
+    transition:none!important;
+  }
+}
+
+/* =========================================================
+   PHASE 3 — STEP 4: LIVING ATMOSPHERE
+   Independent overlays only. Artwork remains untouched.
+   ========================================================= */
+.living-atmosphere{position:absolute;inset:0;z-index:3;pointer-events:none;overflow:hidden}
+.command-center.atmosphere-off .living-atmosphere{display:none}
+.atmo{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.atmo i{position:absolute;display:block;border-radius:50%;opacity:0;will-change:transform,opacity}
+.atmo-back i{width:1.5px;height:1.5px;background:rgba(210,224,211,.52);box-shadow:0 0 4px rgba(255,255,255,.14);animation:atmoBackDrift linear infinite}
+.atmo-mid i{width:2.5px;height:2.5px;background:#caff7b;box-shadow:0 0 6px rgba(202,255,123,.78),0 0 12px rgba(145,255,0,.30);animation:atmoMidDrift linear infinite}
+.atmo-front i{width:3.5px;height:3.5px;background:#ecffd0;box-shadow:0 0 6px #fff,0 0 14px rgba(145,255,0,.72);animation:atmoFrontSpark ease-out infinite}
+.command-center.atmosphere-subtle .atmo-mid i,.command-center.atmosphere-subtle .atmo-front i{opacity:.55!important;filter:brightness(.8)}
+.command-center.atmosphere-vivid .atmo-mid i,.command-center.atmosphere-vivid .atmo-front i{filter:brightness(1.25)}
+.ambient-frame-flow{position:absolute;inset:0;border-radius:8px;box-shadow:inset 0 0 34px rgba(145,255,0,.035),inset 0 0 76px rgba(35,140,255,.025);animation:ambientFrameFlow 8.5s ease-in-out infinite}
+.local-response{position:absolute;border-radius:9px;opacity:0;transition:opacity .28s ease,filter .28s ease;mix-blend-mode:screen}
+.nav-response{left:.45%;top:5.5%;width:11.3%;height:44%;box-shadow:0 0 24px rgba(145,255,0,.25),inset 0 0 24px rgba(145,255,0,.10)}
+.live-response{left:32.7%;top:67.3%;width:16.3%;height:26.1%;box-shadow:0 0 25px rgba(255,55,45,.32),inset 0 0 18px rgba(255,55,45,.08)}
+.countdown-response{left:49%;top:67.3%;width:16%;height:26.1%;box-shadow:0 0 24px rgba(145,255,0,.27),inset 0 0 16px rgba(145,255,0,.07)}
+.commander-response{left:82.35%;top:6.7%;width:17%;height:86.8%;box-shadow:0 0 28px rgba(145,255,0,.30),inset 0 0 24px rgba(35,140,255,.07)}
+.command-center.hover-nav .nav-response,.command-center.hover-live .live-response,.command-center.hover-countdown .countdown-response,.command-center.hover-commander .commander-response{opacity:1;animation:localWake .9s ease-in-out infinite alternate}
+@keyframes atmoBackDrift{0%{transform:translate3d(-16px,20px,0);opacity:0}18%{opacity:.18}75%{opacity:.10}100%{transform:translate3d(70px,-95px,0);opacity:0}}
+@keyframes atmoMidDrift{0%{transform:translate3d(-8px,22px,0) scale(.75);opacity:0}15%{opacity:.38}72%{opacity:.23}100%{transform:translate3d(54px,-145px,0) scale(1.15);opacity:0}}
+@keyframes atmoFrontSpark{0%,86%,100%{transform:translate3d(0,0,0) scale(.2);opacity:0}88%{opacity:.95;transform:scale(1.35)}92%{opacity:.35;transform:translate3d(10px,-24px,0) scale(.8)}96%{opacity:0;transform:translate3d(18px,-48px,0) scale(.25)}}
+@keyframes ambientFrameFlow{0%,100%{opacity:.45;filter:brightness(.92)}50%{opacity:.92;filter:brightness(1.22)}}
+@keyframes localWake{from{filter:brightness(.92)}to{filter:brightness(1.25)}}
+@media(prefers-reduced-motion:reduce){.atmo i,.ambient-frame-flow,.local-response{animation:none!important}}

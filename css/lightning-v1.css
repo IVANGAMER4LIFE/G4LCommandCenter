@@ -1,0 +1,62 @@
+/* G4L Lightning v1.0 — isolated body-energy overlay.
+   The approved Phase 3 Step 4 artwork and existing effects remain untouched. */
+.body-lightning-v1{
+  position:absolute;
+  inset:0;
+  z-index:4;
+  pointer-events:none;
+  overflow:hidden;
+  mix-blend-mode:screen;
+}
+.body-lightning-v1 svg{width:100%;height:100%;display:block;overflow:visible}
+.body-lightning-v1 .bolt-glow,
+.body-lightning-v1 .bolt-core,
+.body-lightning-v1 .bolt-branch{
+  fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  opacity:0;
+}
+.body-lightning-v1 .bolt-glow{
+  stroke:#aaff00;
+  stroke-width:8;
+  filter:blur(5px) drop-shadow(0 0 8px rgba(184,255,0,.82));
+}
+.body-lightning-v1 .bolt-core{
+  stroke:#efffa2;
+  stroke-width:1.65;
+  filter:drop-shadow(0 0 2px #d9ff61) drop-shadow(0 0 5px rgba(154,255,0,.9));
+}
+.body-lightning-v1 .bolt-branch{
+  stroke:#caff45;
+  stroke-width:1.05;
+  filter:drop-shadow(0 0 3px rgba(164,255,0,.88));
+}
+.body-lightning-v1.strike .bolt-glow{animation:g4lBoltGlow .48s steps(1,end) both}
+.body-lightning-v1.strike .bolt-core{animation:g4lBoltCore .48s steps(1,end) both}
+.body-lightning-v1.strike .bolt-branch{animation:g4lBoltBranch .48s steps(1,end) both}
+.body-lightning-v1 .seam-bloom{
+  position:absolute;
+  border-radius:50%;
+  opacity:0;
+  background:radial-gradient(circle,rgba(239,255,162,.28),rgba(170,255,0,.10) 38%,transparent 72%);
+  filter:blur(5px);
+}
+.body-lightning-v1.strike .seam-bloom{animation:g4lSeamBloom .48s ease-out both}
+.body-lightning-v1 .bloom-neck{left:42.2%;top:27.5%;width:15.5%;height:12%}
+.body-lightning-v1 .bloom-chest{left:43.6%;top:34.2%;width:13%;height:14%}
+.body-lightning-v1 .bloom-left{left:31.5%;top:27.8%;width:12%;height:18%}
+.body-lightning-v1 .bloom-right{left:56.5%;top:27.8%;width:12%;height:18%}
+@keyframes g4lBoltCore{
+  0%,7%{opacity:0} 8%{opacity:.95} 13%{opacity:.18} 17%{opacity:1} 25%{opacity:.42} 31%{opacity:.88} 43%{opacity:.16} 52%{opacity:.62} 66%,100%{opacity:0}
+}
+@keyframes g4lBoltGlow{
+  0%,7%{opacity:0} 8%{opacity:.34} 17%{opacity:.48} 31%{opacity:.3} 52%{opacity:.18} 66%,100%{opacity:0}
+}
+@keyframes g4lBoltBranch{
+  0%,11%{opacity:0} 12%{opacity:.7} 20%{opacity:.12} 24%{opacity:.58} 37%{opacity:.14} 54%{opacity:.34} 66%,100%{opacity:0}
+}
+@keyframes g4lSeamBloom{
+  0%,7%{opacity:0;transform:scale(.94)} 12%{opacity:.48;transform:scale(1)} 28%{opacity:.22} 62%,100%{opacity:0;transform:scale(1.04)}
+}
+@media(prefers-reduced-motion:reduce){.body-lightning-v1{display:none}}

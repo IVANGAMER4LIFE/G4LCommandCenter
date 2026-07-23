@@ -1,0 +1,19 @@
+{
+  "build": "G4L Phase 4.1 Vehicle & Guard Soldier Approval Preview",
+  "created_utc": "2026-07-18T18:31:49.714551+00:00",
+  "base_build": "G4L Phase 3 Step 4 + Lightning v1.0 + Jet + Helicopter navigation lights (100% approved)",
+  "locked_master_artwork": {
+    "path": "assets/g4l-approved-master.png",
+    "sha256": "25fd229d320468bd9320924a8fd01adf62b3effa6c8437dfb3652d65a1684568"
+  },
+  "new_overlay_files": [
+    "css/environment-polish-v1.css"
+  ],
+  "protected_features": [
+    "Lightning v1.0",
+    "Jet cinematic effect",
+    "Helicopter navigation lights only",
+    "Commander artwork and layout"
+  ],
+  "approval_status": "PREVIEW \u2014 awaiting user approval"
+}

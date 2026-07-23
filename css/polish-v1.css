@@ -1,0 +1,21 @@
+/* Approved polish layer — helicopter navigation lights + jet effects only. */
+.polish-v1{position:absolute;inset:0;z-index:5;pointer-events:none;overflow:hidden}
+.polish-v1 span{position:absolute;display:block}
+
+/* Helicopter: navigation lights only; no rotor, hover, searchlight, wash or movement effects. */
+.heli-nav-light{width:.34%;aspect-ratio:1;border-radius:50%;animation:navBlink 2.2s steps(1,end) infinite}
+.heli-nav-green{left:28.1%;top:17.8%;background:#baff4a;box-shadow:0 0 5px #baff4a,0 0 11px rgba(186,255,74,.65)}
+.heli-nav-red{left:15.8%;top:13.8%;background:#ff6048;box-shadow:0 0 5px #ff6048,0 0 10px rgba(255,96,72,.55);animation-delay:1.1s}
+
+/* Jet: approved engine glow, heat distortion and occasional glint. */
+.jet-engine{width:2.2%;height:1.0%;border-radius:50%;mix-blend-mode:screen;background:radial-gradient(ellipse at left,rgba(255,255,255,.96),rgba(159,76,255,.84) 28%,rgba(54,148,255,.42) 58%,transparent 76%);filter:blur(.55px) drop-shadow(0 0 5px rgba(145,62,255,.72));transform:rotate(7deg);animation:jetThrust .21s ease-in-out infinite alternate}
+.jet-engine-a{left:72.8%;top:12.2%}
+.jet-engine-b{left:70.7%;top:13.9%;animation-delay:.08s}
+.jet-heat{left:67.5%;top:10.5%;width:9.5%;height:7%;opacity:.25;filter:blur(3px);background:repeating-linear-gradient(90deg,transparent 0 8px,rgba(147,88,255,.10) 9px 11px,transparent 12px 18px);clip-path:polygon(30% 10%,100% 0,100% 100%,20% 80%);animation:heatShimmer .7s linear infinite}
+.jet-glint{left:65.1%;top:11.8%;width:1.2%;aspect-ratio:1;border-radius:50%;opacity:0;background:radial-gradient(circle,#fff 0 10%,#8dd8ff 20%,rgba(125,92,255,.45) 48%,transparent 72%);filter:blur(.2px);animation:jetGlint 6.8s ease-in-out infinite}
+
+@keyframes navBlink{0%,42%,100%{opacity:.25}44%,55%{opacity:1}}
+@keyframes jetThrust{from{transform:rotate(7deg) scaleX(.86);opacity:.68}to{transform:rotate(7deg) scaleX(1.08);opacity:1}}
+@keyframes heatShimmer{0%{transform:translateX(0) skewY(0)}50%{transform:translateX(2px) skewY(.8deg)}100%{transform:translateX(0) skewY(0)}}
+@keyframes jetGlint{0%,82%,100%{opacity:0;transform:scale(.5)}86%{opacity:.9;transform:scale(1.2)}89%{opacity:.12;transform:scale(1.8)}}
+@media(prefers-reduced-motion:reduce){.polish-v1{display:none}}

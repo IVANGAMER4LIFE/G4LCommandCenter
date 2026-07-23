@@ -1,0 +1,31 @@
+{
+  "build": "G4L Phase 5.1 Premium Interface Refinement Approval Preview",
+  "status": "approval-preview",
+  "base": "Phase 4.1 Eyes Corrected Preview",
+  "removed": ["soldier-eye-left", "soldier-eye-right", "soldierEyePulse"],
+  "preserved": [
+    "approved master artwork and layout",
+    "lightning v1.0",
+    "jet effect",
+    "helicopter navigation lights",
+    "vehicle underbody glow",
+    "vehicle headlights",
+    "vehicle reflection",
+    "vehicle heat shimmer",
+    "soldier breathing",
+    "soldier armour LEDs",
+    "soldier weapon pulse"
+  ],
+  "added": [
+    "existing-panel edge refinement",
+    "existing-panel status LEDs",
+    "contained panel scan",
+    "refined hover and press timing"
+  ],
+  "prohibited_changes_confirmed": [
+    "no new panels",
+    "no blur layer",
+    "no layout changes",
+    "no artwork replacement"
+  ]
+}

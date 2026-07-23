@@ -1,0 +1,134 @@
+{
+  "release": "G4L Command Center v1.0 RC1",
+  "baseline": "G4L_Step_2_2C_Integrated_Command_Center_Approval_Preview",
+  "created_utc": "2026-07-21T20:06:07.649823+00:00",
+  "status": "approved release candidate; Discord and mobile/tablet verification pending",
+  "file_count": 25,
+  "files": [
+    {
+      "path": "APPROVED_FINAL_CHANGES.md",
+      "size_bytes": 350,
+      "sha256": "437007171f2f740c56328e850bc3bef63605fc990b4f597cb30bd12238ea030e"
+    },
+    {
+      "path": "APPROVED_MASTER_LOCK.json",
+      "size_bytes": 874,
+      "sha256": "1773c1a17d41f634f9b41b9844d15278028927c5773314f86186ba0239c1ddd5"
+    },
+    {
+      "path": "G4L_COMMAND_CENTER_V1.0_RC1.md",
+      "size_bytes": 1023,
+      "sha256": "995e0b6db4d99de8cecc013d1246207fa8cc6b97fe3206bf0d6b75a44359e278"
+    },
+    {
+      "path": "PHASE4_1_APPROVAL_PREVIEW.md",
+      "size_bytes": 716,
+      "sha256": "b5078fa3751dcd2d7d5b78483b0bc20becbd5fa09955332265581b2d93753401"
+    },
+    {
+      "path": "PHASE4_1_BUILD_MANIFEST.json",
+      "size_bytes": 678,
+      "sha256": "ad990ca6d37c147ceac364e92c336ca2ed7f3d7b76e6a4b3dfefec7adece1b7c"
+    },
+    {
+      "path": "PHASE4_1_EYE_ALIGNMENT_FIX.md",
+      "size_bytes": 407,
+      "sha256": "77d2e1076dc62dc1ddc17dd045cf78e9b5266f7ffa072af876009aa77e11b787"
+    },
+    {
+      "path": "PHASE5_1_APPROVAL_PREVIEW.md",
+      "size_bytes": 1016,
+      "sha256": "e16e306adf7556f96f3c38c16aa56ce54ac054db70d5eb9683ed4bcaaa22e8f6"
+    },
+    {
+      "path": "PHASE5_1_BUILD_MANIFEST.json",
+      "size_bytes": 851,
+      "sha256": "617e0f8cda7e89f65c57f36c1228eba375e00ae6bb8abbf878505715c4fea27d"
+    },
+    {
+      "path": "POLISH_V1_README.md",
+      "size_bytes": 362,
+      "sha256": "4b5735bdec119811773a9b0c701e448201211913cdcaaf1e8dcd3a2f542b2463"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 794,
+      "sha256": "3a2f1302e010c80294edaf77797d212430e52c777944fcf7690a1b0898434b29"
+    },
+    {
+      "path": "STEP_2_2B_HOMEPAGE_POLISH.md",
+      "size_bytes": 540,
+      "sha256": "06fe1017933cb35e17b14481e671d1bc72db79b9d1c8a7ef8f357ed50e358e8f"
+    },
+    {
+      "path": "STEP_2_2C_INTEGRATED_COMMAND_CENTER.md",
+      "size_bytes": 571,
+      "sha256": "a9b432764cb7e3c7b40667a5ede88f0eca6e304760cb2bc1b190cb1bad994cf6"
+    },
+    {
+      "path": "assets/g4l-approved-master.png",
+      "size_bytes": 2356845,
+      "sha256": "25fd229d320468bd9320924a8fd01adf62b3effa6c8437dfb3652d65a1684568"
+    },
+    {
+      "path": "css/environment-polish-v1.css",
+      "size_bytes": 3814,
+      "sha256": "b2480242358ad3fa61573f95995a7f1d8596b17fa37ee14c2ac5b0e23b3fd9b8"
+    },
+    {
+      "path": "css/lightning-v1.css",
+      "size_bytes": 2468,
+      "sha256": "e76147a9ca8e374f6a9e49b4a63d893003ccea75058d0c1c901a286d556bc16e"
+    },
+    {
+      "path": "css/phase5-1-refinement.css",
+      "size_bytes": 3165,
+      "sha256": "3919352fd272abb1510b6e15fd5d5010d018c688d5734bbcac1c7d7dc2e37cee"
+    },
+    {
+      "path": "css/polish-v1.css",
+      "size_bytes": 2250,
+      "sha256": "58d2d368f53477df5a4d40b399381a323e6e977180030c50773c08619f9817d6"
+    },
+    {
+      "path": "css/step2-2c-integrated-home.css",
+      "size_bytes": 2552,
+      "sha256": "9cd7c9d196a7b20af14a614bda5f8c6f180602a4ee2b561796e17d8810908078"
+    },
+    {
+      "path": "css/styles.css",
+      "size_bytes": 44264,
+      "sha256": "b3d1014609a00e2c28c3e3f3ab99c6703dba24ea2162c077335b4578abbc5524"
+    },
+    {
+      "path": "index.html",
+      "size_bytes": 11546,
+      "sha256": "64941288d1fc014373bedf1749d6592fcca5b2aa42055e19f53a69913b1c9e57"
+    },
+    {
+      "path": "js/lightning-v1.js",
+      "size_bytes": 2961,
+      "sha256": "21cfd90b4a165f63a2ac3757fe5aa1bdc3099157f36fda1a61ad9bd19d338fc9"
+    },
+    {
+      "path": "js/phase5-1-refinement.js",
+      "size_bytes": 581,
+      "sha256": "65e7ebbfdacc105bc1407272943f357fc6c3400faa7079be5ebf2d27cb331093"
+    },
+    {
+      "path": "js/script.js",
+      "size_bytes": 25295,
+      "sha256": "230a6c5a548f5dc5790c578391e20b12b945bb2e189319eabd9b7f5ed2a37b52"
+    },
+    {
+      "path": "master-lock-approved-lightning-v1.json",
+      "size_bytes": 2248,
+      "sha256": "3b039656b0a4888078e0c47ce7447a821e1605243f713c7a9d4844d6523693dd"
+    },
+    {
+      "path": "master-lock.json",
+      "size_bytes": 2248,
+      "sha256": "3b039656b0a4888078e0c47ce7447a821e1605243f713c7a9d4844d6523693dd"
+    }
+  ]
+}
