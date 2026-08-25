@@ -1276,39 +1276,3 @@ body{display:grid;place-items:center}
 @keyframes ambientFrameFlow{0%,100%{opacity:.45;filter:brightness(.92)}50%{opacity:.92;filter:brightness(1.22)}}
 @keyframes localWake{from{filter:brightness(.92)}to{filter:brightness(1.25)}}
 @media(prefers-reduced-motion:reduce){.atmo i,.ambient-frame-flow,.local-response{animation:none!important}}
-
-
-/* G4L COMMUNITY GROWING OVERLAY */
-.community-growing-overlay{
-    position:absolute;
-    z-index:20;
-    left:84.2%;
-    top:63.8%;
-    width:12.8%;
-    height:5.5%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#050805;
-    color:#a8ff28;
-    border-radius:4px;
-    font-size:clamp(6px,0.72vw,12px);
-    font-weight:800;
-    line-height:1;
-    text-align:center;
-    white-space:nowrap;
-    pointer-events:none;
-    text-shadow:0 0 7px rgba(168,255,40,.75);
-}
-
-/* COVER ORIGINAL 4,286 NUMBER ONLY */
-.community-number-cover{
-    position:absolute;
-    z-index:21;
-    left:84.8%;
-    top:70.6%;
-    width:6.8%;
-    height:3.8%;
-    background:#050805;
-    pointer-events:none;
-}
