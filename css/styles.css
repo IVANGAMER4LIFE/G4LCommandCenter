@@ -126,6 +126,22 @@ body{display:grid;place-items:center}
 @media(max-width:800px){
   .page-shell{padding:2px}
   .lab-controls span{display:none}
+  
+  .countdown{
+    font-size:clamp(7px,2.2vw,11px);
+    gap:.05em;
+    width:11.6%;
+    max-width:11.6%;
+    overflow:hidden;
+    white-space:nowrap;
+    justify-content:center;
+}
+
+.countdown span,
+.countdown b{
+    font-size:inherit;
+    line-height:1;
+}
 }
 @media(prefers-reduced-motion:reduce){
   .hotspot,.hotspot::before,.hotspot::after{transition:none}
