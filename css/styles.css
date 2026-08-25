@@ -1282,10 +1282,10 @@ body{display:grid;place-items:center}
 .community-growing-overlay{
     position:absolute;
     z-index:20;
-    left:83.7%;
-    top:65.8%;
-    width:13.5%;
-    height:7.2%;
+    left:84.2%;
+    top:63.8%;
+    width:12.8%;
+    height:5.5%;
     display:flex;
     align-items:center;
     justify-content:center;
