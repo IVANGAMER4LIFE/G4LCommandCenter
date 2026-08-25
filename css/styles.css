@@ -1283,8 +1283,8 @@ body{display:grid;place-items:center}
     position:absolute;
     z-index:20;
     left:84.2%;
-    top:50.9%;
-    width:5.7%;
+    top:63.8%;
+    width:12.8%;
     height:5.5%;
     display:flex;
     align-items:center;
@@ -1299,4 +1299,16 @@ body{display:grid;place-items:center}
     white-space:nowrap;
     pointer-events:none;
     text-shadow:0 0 7px rgba(168,255,40,.75);
+}
+
+/* COVER ORIGINAL 4,286 NUMBER ONLY */
+.community-number-cover{
+    position:absolute;
+    z-index:21;
+    left:84.8%;
+    top:70.6%;
+    width:6.8%;
+    height:3.8%;
+    background:#050805;
+    pointer-events:none;
 }
