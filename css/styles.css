@@ -1292,3 +1292,74 @@ body{display:grid;place-items:center}
     pointer-events:none;
     object-fit:fill;
 }
+
+/* =========================================================
+   G4L LIVE STATUS TEXT LAYER
+   ========================================================= */
+
+.g4l-live-status-text{
+    position:absolute;
+    z-index:22;
+    left:84.7%;
+    top:57.3%;
+    width:11.5%;
+    height:5.2%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#050805;
+    color:#a8ff28;
+    font-size:clamp(10px,2.1vw,30px);
+    font-weight:900;
+    line-height:1;
+    white-space:nowrap;
+    pointer-events:none;
+}
+
+.g4l-live-dot{
+    display:inline-block;
+    width:.45em;
+    height:.45em;
+    margin-right:.35em;
+    border-radius:50%;
+    background:#a8ff28;
+    box-shadow:0 0 10px rgba(168,255,40,.9);
+}
+
+.g4l-community-live-count{
+    position:absolute;
+    z-index:22;
+    left:88.8%;
+    top:68.4%;
+    width:6.5%;
+    height:4%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#050805;
+    color:#a8ff28;
+    font-size:clamp(9px,1.45vw,22px);
+    font-weight:900;
+    line-height:1;
+    white-space:nowrap;
+    pointer-events:none;
+}
+
+.g4l-last-update{
+    position:absolute;
+    z-index:22;
+    left:84.8%;
+    top:72.1%;
+    width:11.7%;
+    height:2.7%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#050805;
+    color:#d7dfd4;
+    font-size:clamp(6px,.72vw,11px);
+    font-weight:700;
+    line-height:1;
+    white-space:nowrap;
+    pointer-events:none;
+}
