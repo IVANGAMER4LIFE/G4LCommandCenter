@@ -1276,3 +1276,19 @@ body{display:grid;place-items:center}
 @keyframes ambientFrameFlow{0%,100%{opacity:.45;filter:brightness(.92)}50%{opacity:.92;filter:brightness(1.22)}}
 @keyframes localWake{from{filter:brightness(.92)}to{filter:brightness(1.25)}}
 @media(prefers-reduced-motion:reduce){.atmo i,.ambient-frame-flow,.local-response{animation:none!important}}
+
+/* =========================================================
+   G4L APPROVED LIVE SYSTEM STATUS PANEL
+   Artwork stays untouched — live overlay layer only
+   ========================================================= */
+
+.system-status-live-panel{
+    position:absolute;
+    z-index:21;
+    right:1.05%;
+    top:50.55%;
+    width:15.55%;
+    height:22.35%;
+    pointer-events:none;
+    object-fit:fill;
+}
