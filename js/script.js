@@ -15,13 +15,13 @@
   const panels = {
     home:['WELCOME TO G4L','<p>Your headquarters for gaming, live streams, community, and official G4L merchandise.</p><p>Explore the Command Center and choose your next mission.</p>'],
     about:['ABOUT G4L','<p>IVANGAMER4LIFE is a gaming and streaming brand built around entertainment, community, creativity, and long-term growth.</p><p>The Command Center connects every G4L mission in one place.</p>'],
-    schedule:['STREAM SCHEDULE','<p>Your confirmed weekly streaming schedule will be connected here before launch.</p>'],
+    schedule:['STREAM SCHEDULE','<p>G4L live streams run throughout the week across GTA V, CS2 and StarCraft. Follow G4L for live announcements and upcoming stream times.</p>'],
     streams:['STREAMS','<p>Watch live missions, previous broadcasts, videos, and highlights across the G4L network.</p>'],
-    community:['G4L COMMUNITY','<p>The best moments are shared together. Community events, challenges, and milestones will connect here.</p>'],
+    community:['G4L COMMUNITY','<p>Join the G4L community for gaming, live streams, challenges, updates and shared moments across the G4L Universe.</p>'],
     merch:['OFFICIAL G4L SUPPLY DEPOT','<p class="depot-intro">Gear up with official G4L merchandise created for the community.</p><div class="depot-grid"><article><strong>APPAREL</strong><span>Hoodies, T-shirts, caps and future limited collections.</span><button type="button" class="modal-buy-now" data-product="G4L Apparel">BUY NOW</button></article><article><strong>GAMING GEAR</strong><span>Mouse mats, desk accessories and future gaming equipment.</span><button type="button" class="modal-buy-now" data-product="G4L Gaming Gear">BUY NOW</button></article><article><strong>COMMAND ESSENTIALS</strong><span>Mugs, bottles, tumblers and everyday G4L items.</span><button type="button" class="modal-buy-now" data-product="G4L Command Essentials">BUY NOW</button></article></div><p class="depot-note"><b>SUPPLY STATUS:</b> Preparing for launch. Product links will activate when the official shop is connected.</p>'],
-    gallery:['G4L GALLERY','<p>Gaming clips, highlights, artwork, and community moments will be collected here.</p>'],
+    gallery:['G4L GALLERY','<p>Explore G4L gaming clips, stream highlights, artwork and memorable moments from across the community.</p>'],
     discord:['DISCORD COMMAND NETWORK','<p>Meet the community and prepare for future events, challenges, and missions.</p><p><strong>Permanent Invite:</strong> https://discord.gg/GEcjV8Yagk</p>'],
-    contact:['CONTACT','<p>A dedicated public contact address will be connected before launch.</p>'],
+    contact:['CONTACT','<p>Connect with G4L through our official social channels for enquiries, collaborations and community contact.</p>'],
     commander:['COMMANDER IVANGAMER4LIFE','<p>Creator of the G4L Command Center and the Gamer4Life community.</p><p>Mission: build an entertaining, welcoming gaming brand where every follower can become part of the journey.</p>']
   };
 
